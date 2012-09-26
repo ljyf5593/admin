@@ -1,4 +1,4 @@
 admin
 =====
 
-kohana admin module
+admin module for kohana3.2
