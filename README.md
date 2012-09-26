@@ -1,0 +1,4 @@
+admin
+=====
+
+kohana admin module
