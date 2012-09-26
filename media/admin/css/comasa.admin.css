@@ -1,0 +1,339 @@
+/*
+	Created on : 2012-05-22, 16:59:13
+	Author     : Pawe? Kania Aquasite.pl
+	Description: Stylesheet for AguaAdmin
+
+0. Responsive
+1. Miscellaneous
+2. Navbar
+3. Sidebar
+4. Panel container
+5. Panel
+6. Table
+7. Form
+
+
+**/
+/* 1. Miscellaneous */
+body {
+	padding-top: 40px;
+	background: #e0e0e0;
+	color: #15354c;
+}
+.container-fluid {
+	padding-left: 0;
+	padding-right: 0;
+}
+.alert-content{
+	display: inline-block;
+}
+
+.alert-icon{
+	float: left;
+	margin-right: 10px;
+	padding-right: 5px;
+}
+.breadcrumb {
+	border: none;
+	border-radius: 0px;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	float: left;
+    filter: progid:dximagetransform.microsoft.gradient(startColorstr='#EEEEEE', endColorstr='#EEEEEE', GradientType=0);
+    background-image: -moz-linear-gradient(center top , #EEEEEE, #EEEEEE)
+}
+.breadcrumb li{
+	padding: 10px 6px;
+}
+a [class^="icon-"],.panel-header [class^="icon-"], .alert-icon [class^="icon-"]{
+	margin-right:6px;
+}
+.operations .btn [class^="icon-"]{
+	margin-right:0px;
+}
+.icon-green {
+	color : green;
+}
+.icon-orange {
+	color : orange;
+}
+.icon-red {
+	color : red;
+}
+.icon-blue {
+	color : steelblue;
+}
+.icon-aqua {
+	color : #999999;
+}
+.active [class^="icon-"] {
+	color : steelblue;
+}
+a:hover [class^="icon-"] {
+	color : steelblue;
+}
+a.btn:hover [class^="icon-"] {
+	color : white;
+}
+.clear{
+	clear: both;
+}
+.thumbnail {
+	text-align: center;
+}
+.fl{
+	float: left;
+}
+
+/* 2. Navbar */
+.navbar-inner {
+	background-color: #0E0E0E;
+	background-image: none;
+	border-bottom: 1px solid #c4c4c4;
+	box-shadow: none;
+}
+.navbar .brand {
+	color: #A1B3BD;
+    min-width: 14.529914530000001%;
+    text-align: center;
+}
+.navbar .nav > li > a {
+	color: #A1B3BD;
+}
+.popup{
+	width: 300px;
+	padding: 10px;
+}
+span.popup-content{
+	padding: 10px 10px 10px 20px;
+	display: block;
+	color: #999;
+}
+li > a:hover span.popup-content{
+	color: #fff;
+}
+span.popup-content img{
+	max-width: 100px;
+	max-height: 100px;
+}
+.navbar .nav li a:hover i,.navbar .nav li.active a i, a.btn:hover [class^="icon-"] {
+	color: #ffffff;
+}
+
+/* 3. Sidebar */
+.sidebar-nav .nav-list li {
+	line-height: 32px;
+	border-bottom: 1px solid #c4c4c4;
+}
+.sidebar-nav {
+	padding: 0;
+}
+.sidebar-nav .nav-list a {
+	color: #5c7181;
+	border-top: 1px solid #ffffff;
+	background-color: #efefef;
+}
+.nav-list > .active > a, .nav-list > .active > a:hover, .nav-list > li > a:hover {
+	background: #fff url("../img/arrow.png") no-repeat right center;
+	color: #15354c;
+}
+.nav-list{
+	border-right: 1px solid #c4c4c4;
+	padding: 0px;
+}
+.nav-list > .active > a, .nav-list > .active > a:hover {
+	text-shadow: none;
+}
+.nav-list > li > a, .nav-list .nav-header {
+	margin-left: 0;
+	margin-right: 0;
+}
+.nav-list > li > a {
+	background: #eee url("../img/arrow.png") no-repeat right center;
+}
+.sidebar-nav .nav li + .nav-header {
+	margin-top: 0;
+}
+
+
+/* 4. Panel container */
+.span10.main{
+	padding: 0px;
+	margin-left: 10px;
+}
+.content{
+    margin-top: 5px;
+}
+.row-fluid .top-bar{
+	margin-left: 0px;
+	height: 40px;
+	background-color: #eee;
+	background-image: none;
+	border-left: none;
+	border-right: none;
+	border-top: none;
+    z-index: 1029;
+}
+.actions-bar{
+	float: right;
+	padding-right: 6px;
+	line-height: 20px;
+}
+.top-bar .actions-bar{
+	margin-top: 5px;
+}
+.panel-header .actions-bar  i{
+	margin-top: 2px;
+}
+
+
+/* 5. Panel */
+.panel{
+	background-color: #fff;
+	background-image: url("../img/panel-top-center.png");
+	background-position:center top;
+	background-repeat: repeat-x;
+	border: 1px solid #bbb;
+	padding: 10px;
+	padding-top: 0px;
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+	border-radius: 7px;
+}
+.panel-header{
+	line-height: 28px;
+	height: 28px;
+	margin-bottom: 20px;
+}
+.panel-content{
+	padding: 0px 10px;
+}
+.panel-header h2{
+	line-height: 28px;
+	font-size: 15px;
+	font-weight: normal;
+	text-shadow: 0px 1px 0px #fff,0px 1px 0px #fff,0px 1px 0px #fff,0px 1px 0px #fff;
+	color: #15354c;
+	float: left;
+}
+.panel-header i{
+	/*float: left;*/
+}
+.panel-header .actions-bar{
+	margin-top: 4px;
+}
+.panel.login{
+	width: 500px;
+	margin: auto;
+    font-size: 18px;
+}
+.login .panel-content{
+    width: 300px;
+    margin: 50px auto 50px;
+}
+
+
+/* 6. Table  */
+table td.operations{
+	width: 162px;
+}
+table .filters td{
+	border-top: none;
+}
+.filters input, .filters textarea, .filters select, .filters .uneditable-input {
+	width: 90%;
+}
+
+
+/* 7. Form */
+.input-prepend .add-on, .input-prepend .btn {
+	margin-right: -5px;
+}
+.input-append .add-on, .input-append .btn {
+	margin-left: -5px;
+}
+.login input[type="text"], .login input[type="password"]{
+	width: 250px;
+	height: 30px;
+    font-size: 18px;
+}
+.login .input-prepend .add-on, .login .input-append .add-on {
+	padding: 10px 5px;
+}
+.form-horizontal .input-append, .form-horizontal .input-prepend {
+	margin-left: 20px;
+}
+.form-horizontal .input-append.input-prepend {
+	margin-left: 25px;
+}
+.form-horizontal .input-append.input-prepend .add-on:first-child{
+	margin-right: -6px;
+}
+.form-horizontal .input-append.input-prepend .add-on:last-child{
+	margin-left: -6px;
+}
+.input-xxlarge {
+	width: 100%;
+}
+.input-least {
+    width: 40px;
+}
+
+/* 8. ajax */
+.ajaxstatus {
+    position: fixed;
+    top:45px;
+    left: 35%;
+    width: 200px;
+}
+
+/* Category */
+.table td.level1 {
+    background: url("../img/bg_repno.gif") no-repeat scroll -230px -538px transparent;
+    padding: 10px 0 0 60px;
+}
+.table td.level2 {
+    background: url("../img/bg_repno.gif") no-repeat scroll -175px -538px transparent;
+    padding-left: 115px;
+}
+
+
+/* img preview */
+img.preview{
+    display: none;
+    position: absolute;
+    margin: -20px 0 0 80px;
+    background-color: #FFF;
+    padding: 1px;
+    border: 2px solid #999;
+}
+a:hover img.preview{
+    display: block;
+}
+
+
+/* search form */
+.search-label{
+    margin:0 5px 0 8px;
+}
+
+.show-msg {
+    border: 1px solid white;
+    position: fixed;
+    top: 45px;
+    left: 35%;
+    font-weight: bold;
+}
+
+footer{
+    padding: 0px 20px;
+}
+
+/* fixd IE7 */
+.ie7 .btn {padding-top: 0px;}
+.ie7 .btn-mini {padding-top: 4px; padding-bottom: 4px;}
+.ie7 .dropdown-toggle {padding-top: 4px;}
+.ie7 i[class^="icon-"], li[class*=" icon-"] {
+    padding-top: 2px;
+}

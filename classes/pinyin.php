@@ -1,0 +1,116 @@
+<?php defined('SYSPATH') or die('No direct script access.');
+
+class Pinyin {
+	// 数据文件的文件句柄
+	private $file = NULL;
+
+	// 数据库文件的文件名
+	private $file_name = 'pinyin';
+
+	/**
+	 * @var Pinyin
+	 */
+	private static $instance = NULL;
+
+	/**
+	 * 单例模式
+	 * @static
+	 * @return null|Pinyin
+	 */
+	public static function instance(){
+		if( ! self::$instance instanceof self){
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+	/**
+	 * 字符串转拼音
+	 * @param $str
+	 * @return string
+	 */
+	public function str2pinyin($str){
+		$result = '';
+
+		foreach(UTF8::str_split($str) as $char){
+			$pinyin = $this->get_pinyin($char);
+
+			if(UTF8::strpos($pinyin, ',') !== FALSE ){ // 去除多音字
+				$pys = explode(',', $pinyin);
+				$pinyin = $pys[0];
+			}
+
+			$result .= $pinyin;
+		}
+
+		return $result;
+	}
+
+	/**
+	 * 获取汉字拼音的首字母
+	 * @param $str
+	 * @return string
+	 */
+	public function first_pinyin($str){
+		$result = '';
+
+		foreach(UTF8::str_split($str) as $char){
+			$result .= substr($this->get_pinyin($char), 0, 1);
+		}
+
+		return $result;
+	}
+
+	/**
+	 * 单个汉字转拼音
+	 * @param $char
+	 * @return string
+	 */
+	public function get_pinyin($char){
+
+		if(strlen($char) === 3 && $this->file) { // 中文在utf-8编码中占用三个字节
+			$offset = $this->word2dec($char);
+			if($offset >= 0) {
+				fseek($this->file, ($offset - 19968) << 4, SEEK_SET);
+				return trim(fread($this->file, 16));
+			}
+		}
+
+		return $char;
+	}
+
+	/**
+	 * 汉字转十进制
+	 * 汉字的二进制编码  1110xxxx 10xxxxxx 10xxxxxx
+	 * @param $word
+	 * @return number
+	 */
+	private function word2dec($word){
+
+		return base_convert(bin2hex(iconv('utf-8', 'ucs-4', $word)), 16, 10);
+
+	}
+
+	private function __construct(){
+		if($file_name = Kohana::find_file('data', $this->file_name, 'dat')){
+			if(is_file($file_name)){
+				$this->file = fopen($file_name, 'rb');
+			} else {
+				throw new Kohana_Exception('The file :file could not be read', array(
+					':file' => $file_name,
+				));
+			}
+		} else {
+			throw new Kohana_Exception('The file :file could not be found', array(
+				':file' => $this->file_name,
+			));
+		}
+	}
+
+	public function __destruct() {
+		if($this->file){
+			fclose($this->file);
+		}
+	}
+}
