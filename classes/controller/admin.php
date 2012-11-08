@@ -155,55 +155,55 @@ class Controller_Admin extends Controller_Template {
     {
         $auth_instance = Auth::instance();
 
-		if ( ! $auth_instance->logged_in('login'))
-		{
-			#throw new HTTP_Exception_403('Access denied.');
-			$this->redirect_login();
+        if ( ! $auth_instance->logged_in('login'))
+        {
+            #throw new HTTP_Exception_403('Access denied.');
+            $this->redirect_login();
 
-		} else {
-			$this->login_user = $auth_instance->get_user();
+        } else {
+            $this->login_user = $auth_instance->get_user();
 
-			// 如果是超级管理员直接返回
-			if($auth_instance->logged_in(ADMINISTRATOR)){
-				return TRUE;
-			}
+            // 如果是超级管理员直接返回
+            if($auth_instance->logged_in(ADMINISTRATOR)){
+                return TRUE;
+            }
 
-			$this->user_actions = $this->login_user->get_permissions();
+            $this->user_actions = $this->login_user->get_permissions();
 
-			$controller = strtolower($request->controller());
+            $controller = strtolower($request->controller());
 
-			// auth(登录) 和 home(首页) 不用权限判断
-			if(!in_array($controller, array_merge($this->user_actions, array('auth', 'home')))) {
+            // auth(登录) 和 home(首页) 不用权限判断
+            if(!in_array($controller, array_merge($this->user_actions, array('auth', 'home')))) {
 
-				$message = 'Access denied';
+                $message = 'Access denied';
 
-				if($request->is_ajax()){
+                if($request->is_ajax()){
 
-					$json['status'] = 'error';
-					$json['status_info'] = $message;
-					$body = json_encode($json);
+                    $json['status'] = 'error';
+                    $json['status_info'] = $message;
+                    $body = json_encode($json);
 
-				} else {
+                } else {
 
-					$body = $message;
-				}
-				echo $request->response()->body($body);die();
-			}
-		}
+                    $body = $message;
+                }
+                echo $request->response()->body($body);die();
+            }
+        }
     }
 
-    protected function redirect($url, $time = 2){
+    protected function location($url, $time = 2){
         if($this->request->is_ajax()) {
             $json['location'] = $url;
             $json['time'] = intval($time);
             $this->send_json($json);
         } else {
-            $this->request->redirect($url);
+			HTTP::redirect($url);
         }
     }
 
     /**
-     * 页面跳转，由ajax来操作
+     * 页面跳转，由ajax来操作,ajax内部跳转
      * @param $url
      * @param int $time
      */
@@ -213,7 +213,7 @@ class Controller_Admin extends Controller_Template {
             $json['time'] = $time;
             $this->send_json($json);
         } else {
-            $this->request->redirect($url);
+			HTTP::redirect($url);
         }
     }
 
@@ -222,27 +222,27 @@ class Controller_Admin extends Controller_Template {
         {
             $this->set_status('error', 'Need login');
             $url = Route::url('admin/auth', array('action' => 'login'), TRUE);
-            $this->redirect($url);
+            $this->location($url);
         }
     }
 
     private function get_nav(){
         $nav = Kohana::$config->load('admin');
 
-		// 如果是超级管理员不做权限判断
+        // 如果是超级管理员不做权限判断
         if (Auth::instance()->logged_in(ADMINISTRATOR)) {
             return $nav;
         } else {
-			$user_nav = array();
-			foreach($nav as $name => $sub_nav){
-				foreach($sub_nav as $key => $value){
-					if(in_array($key, $this->user_actions)){
-						$user_nav[$name][$key] = $value;
-					}
-				}
-			}
+            $user_nav = array();
+            foreach($nav as $name => $sub_nav){
+                foreach($sub_nav as $key => $value){
+                    if(in_array($key, $this->user_actions)){
+                        $user_nav[$name][$key] = $value;
+                    }
+                }
+            }
 
-			return $user_nav;
-		}
+            return $user_nav;
+        }
     }
 } // End Admin

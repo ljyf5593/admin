@@ -31,7 +31,7 @@ class Controller_Admin_Permission extends Controller_Admin_Crud {
                 $this->set_status('success');
 
                 // 权限保存成功后应该刷新当前页面，使得权限数据立即在也没上生效
-                $this->redirect($this->request->uri(), 2);
+                $this->location($this->request->uri(), 2);
             }
 
             $role_perms = array();

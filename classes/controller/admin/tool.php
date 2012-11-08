@@ -181,7 +181,7 @@ class Controller_Admin_Tool extends Controller_Admin {
             $this->set_status('failed', 'File not found');
         }
         
-        $this->redirect(URL::site('admin/tool/logview'));
+        $this->location(URL::site('admin/tool/logview'));
     }
 
     /**
