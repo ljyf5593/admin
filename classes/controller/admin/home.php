@@ -14,7 +14,7 @@ class Controller_Admin_Home extends Controller_Admin {
 
 	public function action_info(){
 		$this->main = View::factory('admin/home/info');
-		$dataConfig = new Config_Database_Writer();
+		$dataConfig = new Config_Database();
 		Kohana::$config->attach($dataConfig);
 
 		//加载或者创建一个新分组
