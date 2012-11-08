@@ -2,6 +2,9 @@
 
 define('ADMIN_VERSION', '0.0.1');
 
+// 超级管理员角色名称
+define('ADMINISTRATOR', 'Administrator');
+
 /**
  * 初始化文件 包含路由信息
  *
@@ -21,7 +24,7 @@ Route::set('admin/global', 'admin/<controller>/<action>(/<operation>(/<id>))', a
 	'directory'  => 'admin',
 ));
 
-Route::set('admin/list', 'admin/<controller>(/<action>(/<page>))', array('action' => '(index|list|manage)', 'page' => '[0-9]+'))
+Route::set('admin/list', 'admin/<controller>(/<action>(/<page>(/<order>(/<by>))))', array('action' => '(index|list|manage)', 'page' => '[0-9]+', 'by' => '(desc|asc)'))
 	->defaults(array(
 	'directory'  => 'admin',
 	'controller' => 'home',

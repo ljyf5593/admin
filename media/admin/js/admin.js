@@ -154,6 +154,12 @@
                   return;
               }
 
+              // 排除链接为空
+              var url = $this.attr("href");
+              if(url.length <= 0){
+                  return;
+              }
+
               $.get($this.attr("href"), { _t: new Date().getTime() }, function(json){
                   $main.loadData(json, false);
               }, "json");
@@ -264,7 +270,7 @@
           $main.find('select.chain').on('change', function(e){
               var base_url = $(this).data('chain_url');
               var target = $(this).data('chain_target');
-              $.getJSON(base_url, {'label':this.value}, function(json){
+              $.getJSON(base_url, {'label':this.value, '_t':new Date().getTime()}, function(json){
                 if(json.status == 'success'){
                     var insertHTML = '<option value="">--请选择--</option>';
                     for(var item in json.list){
@@ -320,7 +326,13 @@
       $("ul.nav, div.pagination ul").delegate("li", 'click', function(e){
           e.preventDefault();
           $this = $(this);
-
+            
+          // 如果导航中不存在地址，则直接返回
+          var url = $this.find('a').attr('href');
+          if(url.length <= 0){
+              return ;
+          }
+          
           $this.parent().find('li').removeClass('active');
           $(this).addClass('active');
 
@@ -329,7 +341,7 @@
               return ;
           }
 
-          $.get($this.find('a').attr('href'), { _t: new Date().getTime() }, function(json){
+          $.get(url, { _t: new Date().getTime() }, function(json){
               //触发自定义事件
               if(json.status == 'success'){
                   $('#content').html(json.content).trigger("loaded");

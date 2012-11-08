@@ -20,7 +20,7 @@ class Controller_Auth extends Controller_Admin {
 	public function action_login(){
 		// Redirect logged-in admins to the administration index
 		// All users which make it to the action are considered admins
-		if (Auth::instance()->logged_in())
+		if (Auth::instance()->logged_in('login'))
 
 			$this->request->redirect(Route::url('admin', NULL, TRUE));
 

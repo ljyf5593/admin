@@ -57,7 +57,7 @@
 									</div>
 								</div>
 								<hr/>
-								<a class="btn btn-large" href="/"><i class="icon-arrow-left icon-blue"></i> Back to index</a>
+								<a class="btn btn-large" href="/"><i class="icon-arrow-left icon-blue"></i><?php echo __('Back to index')?></a>
 								<button class="btn btn-primary btn-large stateful" type="submit" data-loading-text="<?php echo __('Login')?>..."><i class="icon-ok icon-white"></i><?php echo __('Login')?></button>
 							</fieldset>
 						</form>
@@ -68,8 +68,7 @@
 	</div><!--/row-->
 	<hr>
 	<footer>
-		<p>&copy; <a href="http://aquasite.pl/aquacms">AquaAdmin CMS Admin Theme</a></p>
-		<p>&copy; <a href="http://fortawesome.github.com/Font-Awesome/">Icon</a></p>
+		<p>Copyright &copy;  2012 Liu.Jie</p>
 	</footer>
 </div><!--/.fluid-container-->
 </body>

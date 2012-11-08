@@ -44,7 +44,7 @@ class Controller_Admin_User extends Controller_Admin_Crud {
 			return $this->set_status('error', $e->errors('validate'));
 		}
 
-		$this->action_index();
+		$this->jump('/admin/user');
 	}
 
 	public function after() {

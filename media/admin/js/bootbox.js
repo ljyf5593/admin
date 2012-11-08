@@ -1,33 +1,14 @@
 /**
- * bootbox.js v2.3.2
+ * bootbox.js v2.4.2
  *
- * The MIT License
- *
- * Copyright (C) 2011-2012 by Nick Payne <nick@kurai.co.uk>
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE
+ * http://bootboxjs.com/license.txt
  */
 var bootbox = window.bootbox || (function($) {
 
-    var _locale        = 'zh',
+    var _locale        = 'en',
         _defaultLocale = 'en',
-        _animate       = false,
+        _animate       = true,
+        _backdrop      = 'static',
         _icons         = {},
         /* last var should always be the public object we'll return */
         that           = {};
@@ -41,11 +22,6 @@ var bootbox = window.bootbox || (function($) {
             OK      : 'OK',
             CANCEL  : 'Cancel',
             CONFIRM : 'OK'
-        },
-        'zh' : {
-            OK      : '确认',
-            CANCEL  : '取消',
-            CONFIRM : '确认'
         },
         'fr' : {
             OK      : 'OK',
@@ -225,11 +201,12 @@ var bootbox = window.bootbox || (function($) {
         }]);
     }
 
-    that.prompt = function(/*str, labelCancel, labelOk, cb*/) {
+    that.prompt = function(/*str, labelCancel, labelOk, cb, defaultVal*/) {
         var str         = "",
             labelCancel = _translate('CANCEL'),
             labelOk     = _translate('CONFIRM'),
-            cb          = null;
+            cb          = null,
+            defaultVal  = "";
 
         switch (arguments.length) {
             case 1:
@@ -258,8 +235,15 @@ var bootbox = window.bootbox || (function($) {
                 labelOk     = arguments[2];
                 cb          = arguments[3];
                 break;
+            case 5:
+                str         = arguments[0];
+                labelCancel = arguments[1];
+                labelOk     = arguments[2];
+                cb          = arguments[3];
+                defaultVal  = arguments[4];
+                break;
             default:
-                throw new Error("Incorrect number of arguments: expected 1-4");
+                throw new Error("Incorrect number of arguments: expected 1-5");
                 break;
         }
 
@@ -267,7 +251,7 @@ var bootbox = window.bootbox || (function($) {
 
         // let's keep a reference to the form object for later
         var form = $("<form></form>");
-        form.append("<input autocomplete=off type=text />");
+        form.append("<input autocomplete=off type=text value='" + defaultVal + "' />");
 
         var div = that.dialog(form, [{
             "label": labelCancel,
@@ -313,7 +297,7 @@ var bootbox = window.bootbox || (function($) {
         var defaultOptions = {
             "onEscape": null,
             "keyboard": true,
-            "backdrop": true
+            "backdrop": _backdrop
         };
 
         switch (arguments.length) {
@@ -419,7 +403,11 @@ var bootbox = window.bootbox || (function($) {
             callbacks[i] = callback;
         }
 
-        var parts = ["<div class='bootbox modal'>"];
+        // @see https://github.com/makeusabrew/bootbox/issues/46#issuecomment-8235302
+        // and https://github.com/twitter/bootstrap/issues/4474
+        // for an explanation of the inline overflow: hidden
+
+        var parts = ["<div class='bootbox modal' style='overflow:hidden;'>"];
 
         if (options['header']) {
             var closeButton = '';
@@ -497,7 +485,7 @@ var bootbox = window.bootbox || (function($) {
         $("body").append(div);
 
         div.modal({
-            "backdrop" : options.backdrop || true,
+            "backdrop" : (typeof options.backdrop  === 'undefined') ? _backdrop : options.backdrop,
             "keyboard" : options.keyboard
         });
 
@@ -510,6 +498,10 @@ var bootbox = window.bootbox || (function($) {
 
     that.animate = function(animate) {
         _animate = animate;
+    }
+
+    that.backdrop = function(backdrop) {
+        _backdrop = backdrop;
     }
 
     return that;

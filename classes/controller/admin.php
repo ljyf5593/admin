@@ -7,9 +7,9 @@
  */
 class Controller_Admin extends Controller_Template {
 
-	public $template = 'admin/template';
+    public $template = 'admin/template';
 
-	public $user_actions = array();
+    public $user_actions = array();
 
     protected $media;
 
@@ -27,17 +27,17 @@ class Controller_Admin extends Controller_Template {
      */
     protected $nav = array();
 
-	/**
-	 * 执行的结果
-	 * @var string
-	 */
-	private $status = 'success';
+    /**
+     * 执行的结果
+     * @var string
+     */
+    private $status = 'success';
 
-	/**
-	 * 执行的结果信息
-	 * @var string
-	 */
-	private $status_info = '';
+    /**
+     * 执行的结果信息
+     * @var string
+     */
+    private $status_info = '';
 
     /**
      * 应用主要信息
@@ -45,11 +45,11 @@ class Controller_Admin extends Controller_Template {
      */
     protected $content ='admin/content';
 
-	/**
-	 * 导航栏处显示的动作信息
-	 * @var array
-	 */
-	protected $top_actions = array();
+    /**
+     * 导航栏处显示的动作信息
+     * @var array
+     */
+    protected $top_actions = array();
 
     /**
      * 包含Profiler 信息
@@ -69,36 +69,35 @@ class Controller_Admin extends Controller_Template {
             $this->js('js/jquery.1.7.2.js');
             $this->js('js/jquery.form.js');
             $this->js('js/bootstrap.min.js');
-			$this->js('js/bootbox.js');
-			$this->js('DatePicker/WdatePicker.js');
-			$this->js('kindEditor/kindeditor.js');
-			$this->js('kindEditor/lang/zh_CN.js');
-			$this->js('js/admin.js');
+            $this->js('js/bootbox.js');
+            $this->js('DatePicker/WdatePicker.js');
+            $this->js('kindEditor/kindeditor.js');
+            $this->js('kindEditor/lang/zh_CN.js');
+            $this->js('js/admin.js');
         }
 
-		$this->check_permissions($this->request);
-		$this->nav = $this->get_nav();
+        $this->check_permissions($this->request);
+        $this->nav = $this->get_nav();
     }
 
     public function after(){
 
-		// 设置内容信息
-		$this->content = View::factory($this->content);
-		$this->content->main = $this->main;
-		$this->content->top_actions = $this->top_actions;
-		$this->content->status = $this->status;
-		$this->content->status_info = $this->status_info;
-
+        // 设置内容信息
+        $this->content = View::factory($this->content);
+        $this->content->main = $this->main;
+        $this->content->top_actions = $this->top_actions;
+        $this->content->status = $this->status;
+        $this->content->status_info = $this->status_info;
         if($this->request->is_ajax() AND $this->auto_render){
 
-			$this->auto_render = FALSE;
+            $this->auto_render = FALSE;
 
-			// 当前执行的状态为error时，不再发送内容信息
-			if($this->status == 'error'){
-				$this->send_json();
-			} else {
-				$this->send_json(array('content' => (string)($this->content)));
-			}
+            // 当前执行的状态为success时，不再发送内容信息
+            if($this->status !== 'success'){
+                $this->send_json();
+            } else {
+                $this->send_json(array('content' => (string)($this->content)));
+            }
 
         } else {
 
@@ -107,22 +106,22 @@ class Controller_Admin extends Controller_Template {
             $this->template->user = $this->login_user;
             $this->template->nav = $this->nav;
             $this->template->content = $this->content;
-			parent::after();
+            parent::after();
         }
 
     }
 
-	/**
-	 * 将给定的数组按照json数据格式输出到浏览器
-	 * @param array $json
-	 */
-	protected function send_json(array $json = array()){
-		$response = array();
-		$response['status'] = $this->status;
-		$response['status_info'] = $this->status_info;
-		echo $this->response->headers('Content-type', 'application/json; charset=UTF-8')->send_headers()->body(json_encode($response + $json));
-		exit;
-	}
+    /**
+     * 将给定的数组按照json数据格式输出到浏览器
+     * @param array $json
+     */
+    protected function send_json(array $json = array()){
+        $response = array();
+        $response['status'] = $this->status;
+        $response['status_info'] = $this->status_info;
+        echo $this->response->headers('Content-type', 'application/json; charset=UTF-8')->send_headers()->body(json_encode($response + $json));
+        exit;
+    }
 
     protected function css($css){
         $this->media->css('admin/'.$css);
@@ -132,18 +131,18 @@ class Controller_Admin extends Controller_Template {
         $this->media->js('admin/'.$js);
     }
 
-	/**
-	 * 设置状态信息
-	 * @param string $status
-	 * @param null $status_info
-	 */
-	protected function set_status($status = 'success', $status_info = NULL){
-		$this->status = $status;
-		if($status == 'success' AND $status_info === NULL){
-			$status_info = __('Operation was successful');
-		}
-		$this->status_info = $status_info;
-	}
+    /**
+     * 设置状态信息
+     * @param string $status
+     * @param null $status_info
+     */
+    protected function set_status($status = 'success', $status_info = NULL){
+        $this->status = $status;
+        if($status == 'success' AND $status_info === NULL){
+            $status_info = __('Operation was successful');
+        }
+        $this->status_info = $status_info;
+    }
 
     /**
      * Check permissions for a certain Request
@@ -154,21 +153,26 @@ class Controller_Admin extends Controller_Template {
      */
     public function check_permissions(Request $request)
     {
-		$auth_instance = Auth::instance();
+        $auth_instance = Auth::instance();
 
-        if ( ! $auth_instance->logged_in('login'))
-        {
-            #throw new HTTP_Exception_403('Access denied.');
+		if ( ! $auth_instance->logged_in('login'))
+		{
+			#throw new HTTP_Exception_403('Access denied.');
+			$this->redirect_login();
 
-            $this->redirect_login();
-
-        } else {
+		} else {
 			$this->login_user = $auth_instance->get_user();
+
+			// 如果是超级管理员直接返回
+			if($auth_instance->logged_in(ADMINISTRATOR)){
+				return TRUE;
+			}
+
 			$this->user_actions = $this->login_user->get_permissions();
 
 			$controller = strtolower($request->controller());
 
-			// auth 和 home 不用权限判断
+			// auth(登录) 和 home(首页) 不用权限判断
 			if(!in_array($controller, array_merge($this->user_actions, array('auth', 'home')))) {
 
 				$message = 'Access denied';
@@ -188,52 +192,57 @@ class Controller_Admin extends Controller_Template {
 		}
     }
 
-	protected function redirect($url, $time = 2){
-		if($this->request->is_ajax()) {
-			$json['location'] = $url;
+    protected function redirect($url, $time = 2){
+        if($this->request->is_ajax()) {
+            $json['location'] = $url;
             $json['time'] = intval($time);
-			$this->send_json($json);
-		} else {
-			$this->request->redirect($url);
-		}
-	}
+            $this->send_json($json);
+        } else {
+            $this->request->redirect($url);
+        }
+    }
 
-	/**
-	 * 页面跳转，由ajax来操作
-	 * @param $url
-	 * @param int $time
-	 */
-	protected function jump($url, $time = 2){
-		if($this->request->is_ajax()) {
-			$json['url'] = $url;
-			$json['time'] = $time;
-			$this->send_json($json);
-		} else {
-			$this->request->redirect($url);
-		}
-	}
+    /**
+     * 页面跳转，由ajax来操作
+     * @param $url
+     * @param int $time
+     */
+    protected function jump($url, $time = 2){
+        if($this->request->is_ajax()) {
+            $json['url'] = $url;
+            $json['time'] = $time;
+            $this->send_json($json);
+        } else {
+            $this->request->redirect($url);
+        }
+    }
 
-	protected function redirect_login(){
-		if ($this->request->action() !== 'login')
-		{
+    protected function redirect_login(){
+        if ($this->request->action() !== 'login')
+        {
             $this->set_status('error', 'Need login');
-			$url = Route::url('admin/auth', array('action' => 'login'), TRUE);
-			$this->redirect($url);
-		}
-	}
+            $url = Route::url('admin/auth', array('action' => 'login'), TRUE);
+            $this->redirect($url);
+        }
+    }
 
-	private function get_nav(){
-		$nav = Kohana::$config->load('admin');
+    private function get_nav(){
+        $nav = Kohana::$config->load('admin');
 
-		$user_nav = array();
-		foreach($nav as $name => $sub_nav){
-			foreach($sub_nav as $key => $value){
-				if(in_array($key, $this->user_actions)){
-					$user_nav[$name][$key] = $value;
+		// 如果是超级管理员不做权限判断
+        if (Auth::instance()->logged_in(ADMINISTRATOR)) {
+            return $nav;
+        } else {
+			$user_nav = array();
+			foreach($nav as $name => $sub_nav){
+				foreach($sub_nav as $key => $value){
+					if(in_array($key, $this->user_actions)){
+						$user_nav[$name][$key] = $value;
+					}
 				}
 			}
-		}
 
-		return $user_nav;
-	}
+			return $user_nav;
+		}
+    }
 } // End Admin

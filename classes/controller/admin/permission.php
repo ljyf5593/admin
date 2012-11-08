@@ -49,7 +49,7 @@ class Controller_Admin_Permission extends Controller_Admin_Crud {
     }
 
 	public function after(){
-		$this->main->sys_roles = array('login', 'Administrator');
+		$this->main->sys_roles = array('login', ADMINISTRATOR);
 		parent::after();
 	}
 

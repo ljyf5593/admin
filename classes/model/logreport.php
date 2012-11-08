@@ -13,15 +13,15 @@ class Model_Logreport{
 
     // Copy of Kohana_log_file log levels
     public static $levels = array(
-		LOG_EMERG => 'EMERGENCY',
-		LOG_ALERT => 'ALERT',
-		LOG_CRIT => 'CRITICAL',
-		LOG_ERR => 'ERROR',
-		LOG_WARNING => 'WARNING',
-		LOG_NOTICE => 'NOTICE',
-		LOG_INFO => 'INFO',
-		LOG_DEBUG => 'DEBUG',
-	);
+        LOG_EMERG => 'EMERGENCY',
+        LOG_ALERT => 'ALERT',
+        LOG_CRIT => 'CRITICAL',
+        LOG_ERR => 'ERROR',
+        LOG_WARNING => 'WARNING',
+        LOG_NOTICE => 'NOTICE',
+        LOG_INFO => 'INFO',
+        LOG_DEBUG => 'DEBUG',
+    );
 
     function __construct($filepath)
     {
@@ -38,60 +38,60 @@ class Model_Logreport{
     {
         $pattern = "/(.*) --- ([A-Z]*): ([^:]*):? ([^~]*)~? (.*)/";
 
-		//匹配自定义log
-		$custom_pattern = "/(.*) --- ([A-Z]*): (.*)/";
+        //匹配自定义log
+        $custom_pattern = "/(.*) --- ([A-Z]*): (.*)/";
 
         $last_log = null;
-		$i = 0;
+        $i = 0;
         foreach($this->_rawContent as $logRaw) {
-			$logRaw = trim($logRaw);
-			if ($logRaw != '--' && $logRaw[0] != '#' && stripos($logRaw, 'STRACE') === FALSE) {
-				preg_match($pattern, $logRaw, $matches);
+            $logRaw = trim($logRaw);
+            if ($logRaw != '--' && (isset($logRaw[0]) && $logRaw[0] != '#') && stripos($logRaw, 'STRACE') === FALSE) {
+                preg_match($pattern, $logRaw, $matches);
 
-				$log = array();
-				$log['raw'] = $logRaw;
-				if($matches) { 
-					$log['time'] = strtotime($matches[1]);
-					$log['level'] = $matches[2];    // Notice, Error etc.
-					$log['style'] = $this->_getStyle($matches[2]);    // CSS class for styling
-					$log['type'] = $matches[3];     // Exception name
-					$log['message'] = $matches[4];
-					$log['file'] = $matches[5];
+                $log = array();
+                $log['raw'] = $logRaw;
+                if($matches) { 
+                    $log['time'] = strtotime($matches[1]);
+                    $log['level'] = $matches[2];    // Notice, Error etc.
+                    $log['style'] = $this->_getStyle($matches[2]);    // CSS class for styling
+                    $log['type'] = $matches[3];     // Exception name
+                    $log['message'] = $matches[4];
+                    $log['file'] = $matches[5];
 
-				} else { //如果是自定义Log
-					preg_match($custom_pattern, $logRaw, $matches);
-					if($matches) {
-						$log['time'] = strtotime($matches[1]);
-						$log['level'] = $matches[2];    // Notice, Error etc.
-						$log['style'] = $this->_getStyle($matches[2]);    // CSS class for styling
-						$log['type'] = '';     // Exception name
-						$log['message'] = $matches[3];
-						$log['file'] = '';
-					}
-				}
+                } else { //如果是自定义Log
+                    preg_match($custom_pattern, $logRaw, $matches);
+                    if($matches) {
+                        $log['time'] = strtotime($matches[1]);
+                        $log['level'] = $matches[2];    // Notice, Error etc.
+                        $log['style'] = $this->_getStyle($matches[2]);    // CSS class for styling
+                        $log['type'] = '';     // Exception name
+                        $log['message'] = $matches[3];
+                        $log['file'] = '';
+                    }
+                }
 
-				$this->_logEntries[] = $log;
-				$last_log = $i;
-				$i++;
-			}
+                $this->_logEntries[] = $log;
+                $last_log = $i;
+                $i++;
+            }
 
-			if (!isset($this->_logEntries[$last_log]['message'])){
-				$this->_logEntries[$last_log]['message'] = '';
-			}
-			
-			if (stripos($logRaw, 'STRACE') !== FALSE) {
-				$message = Arr::get($this->_logEntries[$last_log], 'message');
-				$this->_logEntries[$last_log]['message'] =  $message . '<br/><br/><p>Stack Trace:</p><ol style="font-family:consolas;font-size:8pt">';
-			}
-			
-			if ($logRaw[0] == '#') {
-				$logRaw = preg_replace('/#\d /', '', $logRaw);
-				$this->_logEntries[$last_log]['message'] .= '<li>'.$logRaw . '</li>';
-			}
-			
-			if (preg_match('/\{main\}/', $logRaw)) {
-				$this->_logEntries[$last_log]['message'] .= '</ol>';
-			}
+            if (!isset($this->_logEntries[$last_log]['message'])){
+                $this->_logEntries[$last_log]['message'] = '';
+            }
+            
+            if (stripos($logRaw, 'STRACE') !== FALSE) {
+                $message = Arr::get($this->_logEntries[$last_log], 'message');
+                $this->_logEntries[$last_log]['message'] =  $message . '<br/><br/><p>Stack Trace:</p><ol style="font-family:consolas;font-size:8pt">';
+            }
+            
+            if (isset($logRaw[0]) && $logRaw[0] == '#') {
+                $logRaw = preg_replace('/#\d /', '', $logRaw);
+                $this->_logEntries[$last_log]['message'] .= '<li>'.$logRaw . '</li>';
+            }
+            
+            if (preg_match('/\{main\}/', $logRaw)) {
+                $this->_logEntries[$last_log]['message'] .= '</ol>';
+            }
         }
     }
 
@@ -99,7 +99,7 @@ class Model_Logreport{
     {
         switch($level){
             case self::$levels[LOG_WARNING]:
-			case self::$levels[LOG_ALERT]:
+            case self::$levels[LOG_ALERT]:
             case self::$levels[LOG_DEBUG]:
                 return 'warning';
                 break;

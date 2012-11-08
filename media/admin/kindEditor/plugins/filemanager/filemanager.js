@@ -105,7 +105,7 @@ KindEditor.plugin('filemanager', function(K) {
             paginationDiv.click(function(e){
                 e.preventDefault();
                 var param = e.target.href.split("?");
-                var uri = param[0];
+                var uri = param[0]+'?'+param[1].split("&").pop();
 
                 reloadPage(result.moveup_dir_path, orderTypeBox.val(), createFunc, uri);
             });

@@ -86,8 +86,7 @@ class Watermark {
 		if( ! $watermark_config) {
 			// 获取水印配置信息
 			$dataConfig = new Config_Database_Reader();
-			Kohana::$config->attach($dataConfig);
-			$watermark_config = Kohana::$config->load('watermark');
+			$watermark_config = $dataConfig->load('watermark');
 			$this->cache->set('watermark_config', $watermark_config);
 		}
 
@@ -153,7 +152,7 @@ class Watermark {
 			}
 
 		} else {
-			die('未开启水印功能');
+			echo Request::$current->response()->send_headers()->body('未开启水印功能');die();
 		}
 	}
 

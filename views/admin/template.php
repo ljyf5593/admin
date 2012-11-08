@@ -12,7 +12,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<!--[if IE 7]>
-	<link href="/media/admin/css/font-awesome-ie7.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo URL::site('/media/admin/css/font-awesome-ie7.css');?>" rel="stylesheet" type="text/css" />
 	<![endif]-->
 
 	<!-- CSS
@@ -20,7 +20,7 @@
 	<?php echo $media->render_css();?>
 
 	<!-- Le fav and touch icons -->
-	<link rel="shortcut icon" href="media/ico/favicon.ico">
+	<link rel="shortcut icon" href="<?php echo URL::site('/media/ico/favicon.ico');?>">
 </head>
 <body>
 <div class="navbar navbar-fixed-top">
@@ -167,7 +167,7 @@
 </div><!--/.fluid-container-->
 <div class="container-fluid">
 	<footer class="span12">
-		<p>&copy; <a href="http://aquasite.pl/aquacms">AquaAdmin CMS Admin Theme</a></p>
+		<p>Copyright &copy;  2012 Liu.Jie</p>
 	</footer>
 </div>
 
@@ -177,8 +177,8 @@
 <!-- JS
 ================================================== -->
 <script type="text/javascript">
-	var UPLOAD_URL = "<?php echo Route::url('admin', array('controller' => 'resource', 'action' => 'upload'), TRUE);?>";
-	var FILE_MANAGE_URL = "<?php echo Route::url('admin', array('controller' => 'resource', 'action' => 'manage'), TRUE);?>";
+	var UPLOAD_URL = "<?php echo URL::site('/editor/upload');?>";
+	var FILE_MANAGE_URL = "<?php echo URL::site('/editor/manage');?>";
 </script>
 <?php echo $media->render_js();?>
 </body>
