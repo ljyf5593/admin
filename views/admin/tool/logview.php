@@ -21,8 +21,8 @@
             <label class="input-append">
                 Date
                 <input type="text" class="input-large date" name="date" id="date" value="<?php echo $date;?>">
-                <span class="add-on">
-                    <i class="icon-calendar icon-blue date" target="date"></i>
+                <span class="add-on date" target="date">
+                    <i class="icon-calendar icon-blue"></i>
                 </span>
             </label>
             <button type="submit" class="btn btn-primary"><i class="icon-search"></i><?php echo __('View');?></button>
