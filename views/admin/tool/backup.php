@@ -10,7 +10,7 @@
 			<table class="table table-bordered table-striped">
 				<thead>
 					<tr>
-						<td class="selections select-all"><input type="checkbox" class="selection select-all"></td>
+						<td class="select-all"><input type="checkbox" class="selection select-all"></td>
 						<?php foreach($options as $option):?>
 						<td><?php echo __($option);?></td>
 						<?php endforeach;?>
@@ -21,7 +21,7 @@
 					<?php foreach($tables as $table):?>
 					<?php $table_name = substr($table['Name'], $table_pre_len);?>
 					<tr>
-						<td class="selections"><input class="selection" type="checkbox" name="tables[]" value="<?php echo $table_name;?>"></td>
+						<td><input class="selection" type="checkbox" name="tables[]" value="<?php echo $table_name;?>"></td>
 						<?php foreach($options as $option):?>
 						<td><?php echo $table[$option];?></td>
 						<?php endforeach;?>

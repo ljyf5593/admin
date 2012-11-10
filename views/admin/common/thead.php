@@ -1,7 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
 <thead>
 <tr>
-    <td class="selections select-all"><input type="checkbox" class="selection select-all"></td>
+    <td><input type="checkbox" class="select-all"></td>
 	<?php foreach($list_row as $key => $value):?>
     <th><a class="ajax" href="<?php echo Route::url('admin/list', array(
 		'controller' => $controller,

@@ -1,5 +1,14 @@
 # 添加批量操作特性
 
+## 在前台页面上添加批量选中功能
+### 在触发全选的input上添加"select_all"的class,例如:
+
+    <td><input type="checkbox" class="select-all"></td>
+
+### 添加当触发全选时，那些元素将被选中，需要被选中的元素需添加"selection"的class,例如:
+
+    <td><input class="selection" type="checkbox" name="ids[]" value="<?php echo $model->pk();?>"></td>
+
 例如为评论添加批量审核通过功能
 
 ## 在对应的Model中定义"_batch_operation"属性

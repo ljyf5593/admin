@@ -32,7 +32,7 @@
             <tbody>
             <?php foreach($model_list as $model):?>
             <tr>
-                <td class="selections"><input class="selection" type="checkbox" name="ids[]" value="<?php echo $model->pk();?>"></td>
+                <td><input class="selection" type="checkbox" name="ids[]" value="<?php echo $model->pk();?>"></td>
                 <?php foreach($list_row as $key => $value):?>
                 <td>
                 <?php

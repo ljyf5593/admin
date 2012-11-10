@@ -31,7 +31,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</a>
-			<a class="brand" href="<?php echo URL::site('/');?>">爱教练私教网</a>
+			<a class="brand" target="_blank" href="<?php echo URL::site('/');?>">爱教练私教网</a>
 			<div class="btn-group pull-right">
 				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 					<i class="icon-user"></i> <?php echo $user->username;?>
