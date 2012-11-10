@@ -343,10 +343,16 @@
 
           $.get(url, { _t: new Date().getTime() }, function(json){
               //触发自定义事件
-              if(json.status == 'success'){
-                  $('#content').html(json.content).trigger("loaded");
-              } else if (json.location != '') {
+              if (json.location) {
                   window.location.href = json.location;
+              } else if (json.url){
+                  setTimeout(function(){
+                      $.get(json.url, { _t : new Date().getTime() }, function(response){
+                          $('#content').html(response.content);
+                      }, "json");
+                  }, json.time*1000);
+              } else if(json.status == 'success'){
+                  $('#content').html(json.content).trigger("loaded");
               } else {
                   $('#content').html(json.status_info);
               }
