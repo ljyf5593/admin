@@ -2,6 +2,7 @@
 - [定义后台站点地图](sitemap)
 - [列表页添加批量操作](batch)
 - [列表页添加搜索选项](search)
+- [后台模板效果](template)
 - [Validation](validation)
 - [Filters](filters)
 - [Examples](examples)
