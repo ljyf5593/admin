@@ -79,7 +79,6 @@ return array
     'password_confirm' => '确认密码',
     'Lock' => '锁定',
     'Unlock' => '运行',
-
     'Permission' => '权限',
     'Role' => '角色',
 
@@ -89,6 +88,8 @@ return array
     'User active is Enable' => '当前用户状态为开启',
     'User active is Disable' => '当前用户状态为禁用',
     'Change your password, please fill in here, otherwise leave blank' => '修改密码请填写这里，否则请留空',
+
+	'Faq' => '帮助',
 
     ':field must be at least :param2 characters long' => ':field至少:param2个字符',
     ':field must be the same as :param2' => ':field必须和:param2相同',

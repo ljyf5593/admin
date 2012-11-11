@@ -7,9 +7,15 @@
  */
 class ORM extends Kohana_ORM {
 
+	// 搜索列
 	protected $_search_row = array();
+	// 显示列
 	protected $_list_row = array();
+	// 批量操作
 	protected $_batch_operation = array();
+
+	// 需要加载富文本编辑器的列
+	public $editer_row = '';
 	/**
 	 * 获取搜索列的相关信息
 	 * Enter description here ...

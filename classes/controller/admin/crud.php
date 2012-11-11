@@ -91,8 +91,9 @@ abstract class Controller_Admin_Crud extends Controller_Admin {
             $this->set_status('success');
 
         }catch (ORM_Validation_Exception $e){
-
-            return $this->set_status('error', $e->errors('authmsg'));
+			$message = $e->errors('validation');
+			$this->main->message = $message;
+            return $this->set_status('error', $message);
         }
 
         $this->action_index();
@@ -173,7 +174,7 @@ abstract class Controller_Admin_Crud extends Controller_Admin {
      * @param $file
      * @return View
      */
-    protected function load_view($file, $model = NULL){
+    protected function load_view($file, $model = NULL, $message = array()){
         $view_path = strtolower('admin/'.$this->_model.'/'.$file);
 
         if(Kohana::find_file('views', $view_path, 'php')){
@@ -187,6 +188,9 @@ abstract class Controller_Admin_Crud extends Controller_Admin {
 			$view->model = $model;
 			$view->action = $this->request->action();
 		}
+
+		// 加载一个message信息
+		$view->message = $message;
 
 		return $view;
     }

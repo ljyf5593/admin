@@ -108,6 +108,7 @@
               msgDiv: $main.find("div.show-msg")
           });
 
+          // 消息提示框动画
           $main.msgDiv.delay(5000).hide(800, function(){$(this).removeClass("span3")});
 
           // CRUD ajax,会有操作提示信息
