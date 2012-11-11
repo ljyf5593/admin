@@ -289,9 +289,9 @@
 
       //loading btn
       $('.stateful').on("click", function () {
-              var $btn = $(this);
-              $btn.button("loading");
-          }),
+          var $btn = $(this);
+          $btn.button("loading");
+      }),
 
       // Login ajax
       $("#login-form").ajaxForm({
@@ -349,7 +349,7 @@
               } else if (json.url){
                   setTimeout(function(){
                       $.get(json.url, { _t : new Date().getTime() }, function(response){
-                          $('#content').html(response.content);
+                          $('#content').html(response.content).trigger("loaded");
                       }, "json");
                   }, json.time*1000);
               } else if(json.status == 'success'){
