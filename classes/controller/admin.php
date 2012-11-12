@@ -66,7 +66,7 @@ class Controller_Admin extends Controller_Template {
             $this->css('css/bootstrap-responsive.css');
             $this->css('css/comasa.admin.css');
 
-            $this->js('js/jquery.1.7.2.js');
+            $this->js('js/jquery.min.1.8.2.js');
             $this->js('js/jquery.form.js');
             $this->js('js/bootstrap.min.js');
             $this->js('js/bootbox.js');
