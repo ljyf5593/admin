@@ -21,6 +21,12 @@ class Controller_Admin extends Controller_Template {
      */
     protected $login_user = NULL;
 
+	/**
+	 * 是否超级管理员
+	 * @var bool
+	 */
+	protected $is_administrator = FALSE;
+
     /**
      * 导航菜单
      * @var array
@@ -165,7 +171,7 @@ class Controller_Admin extends Controller_Template {
 
             // 如果是超级管理员直接返回
             if($auth_instance->logged_in(ADMINISTRATOR)){
-                return TRUE;
+				return $this->is_administrator = TRUE;
             }
 
             $this->user_actions = $this->login_user->get_permissions();
@@ -230,7 +236,7 @@ class Controller_Admin extends Controller_Template {
         $nav = Kohana::$config->load('admin');
 
         // 如果是超级管理员不做权限判断
-        if (Auth::instance()->logged_in(ADMINISTRATOR)) {
+        if ($this->is_administrator) {
             return $nav;
         } else {
             $user_nav = array();

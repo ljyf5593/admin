@@ -49,7 +49,7 @@ class Controller_Admin_Tool extends Controller_Admin {
 
             if(!empty($tables)){
 
-                $sql = '-- Comasa '.VERSION."\n\n";
+                $sql = '-- Comasa '.ADMIN_VERSION."\n\n";
                 foreach($tables as $table){
                     $full_table = $db->quote_table($table);
                     $sql .= "DROP TABLE IF EXISTS {$full_table};\n";
@@ -181,7 +181,7 @@ class Controller_Admin_Tool extends Controller_Admin {
             $this->set_status('failed', 'File not found');
         }
         
-        $this->location(URL::site('admin/tool/logview'));
+        $this->redirect(URL::site('admin/tool/logview'));
     }
 
     /**

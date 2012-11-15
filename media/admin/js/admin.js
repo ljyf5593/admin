@@ -258,11 +258,11 @@
           // 增加列表项
           $main.find('div.btn-group a.addtr').on('click', function(e){
               e.preventDefault();
-              listTable.append("<tr><td></td><td><input type=\"text\" value=\"0\" name=\"newmodel["+listTableTr+"][displayorder]\" class=\"input-mini\"></td><td><input type=\"text\" value=\"\" name=\"newmodel["+listTableTr+"][name]\" class=\"input-xlarge\"></td><td><input type=\"text\" value=\"\" name=\"newmodel["+listTableTr+"][label]\" class=\"input-xlarge\"></td></tr>");
+              listTable.append("<tr><td><input type=\"checkbox\" value=\"\" name=\"\"></td><td></td><td><input type=\"text\" value=\"0\" name=\"newmodel["+listTableTr+"][displayorder]\" class=\"input-mini\"></td><td><input type=\"text\" value=\"\" name=\"newmodel["+listTableTr+"][name]\" class=\"input-xlarge\"></td><td><input type=\"text\" value=\"\" name=\"newmodel["+listTableTr+"][label]\" class=\"input-xlarge\"></td></tr>");
               listTableTr++;
           });
 
-          // 增加列表项
+          // 下拉菜单提交时更新
           $main.find('#change-submit select').on('change', function(e){
               $(this).closest('form').submit();
           });
