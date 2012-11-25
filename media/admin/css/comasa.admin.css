@@ -33,6 +33,7 @@ body {
 	margin-right: 10px;
 	padding-right: 5px;
 }
+
 .breadcrumb {
 	border: none;
 	border-radius: 0px;
@@ -94,9 +95,14 @@ a.btn:hover [class^="icon-"] {
 	box-shadow: none;
 }
 .navbar .brand {
-	color: #A1B3BD;
     min-width: 14.529914530000001%;
     text-align: center;
+    font-weight: bold;
+    color: #000;
+    text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.125);
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    transition: all .2s linear;
 }
 .navbar .nav > li > a {
 	color: #A1B3BD;

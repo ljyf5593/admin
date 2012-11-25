@@ -215,7 +215,7 @@ class Controller_Admin extends Controller_Template {
      */
     protected function jump($url, $time = 2){
         if($this->request->is_ajax()) {
-            $json['url'] = $url;
+            $json['url'] = URL::site($url, TRUE);
             $json['time'] = $time;
             $this->send_json($json);
         } else {

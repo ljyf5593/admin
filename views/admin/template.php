@@ -20,7 +20,7 @@
 	<?php echo $media->render_css();?>
 
 	<!-- Le fav and touch icons -->
-	<link rel="shortcut icon" href="<?php echo URL::site('/media/ico/favicon.ico');?>">
+	<link rel="shortcut icon" href="<?php echo URL::site('/media/admin/ico/favicon.ico');?>">
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -31,7 +31,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</a>
-			<a class="brand" target="_blank" href="<?php echo URL::site('/');?>">爱教练私教网</a>
+			<a class="brand" target="_blank" href="<?php echo URL::site('/');?>">Comasa</a>
 			<div class="btn-group pull-right">
 				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 					<i class="icon-user"></i> <?php echo $user->username;?>
