@@ -216,6 +216,7 @@ span.popup-content img{
 	text-shadow: 0px 1px 0px #fff,0px 1px 0px #fff,0px 1px 0px #fff,0px 1px 0px #fff;
 	color: #15354c;
 	float: left;
+    margin: 0;
 }
 .panel-header i{
 	/*float: left;*/
@@ -259,7 +260,7 @@ table .filters td{
     font-size: 18px;
 }
 .login .input-prepend .add-on, .login .input-append .add-on {
-	padding: 10px 5px;
+	padding: 9px 5px;
 }
 .form-horizontal .input-append, .form-horizontal .input-prepend {
 	margin-left: 20px;

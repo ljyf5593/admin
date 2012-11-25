@@ -4,7 +4,6 @@
 		<h2><i class="icon-tasks icon-blue"></i><?php echo __($action).__('User');?></h2>
 	</div>
 	<div class="panel-content">
-		<p>
 		<form class="form-horizontal ajaxform" method="post" action="<?php echo Route::url('admin', array('controller' => 'user', 'action' => 'update', 'id' => $model->pk()))?>">
 			<fieldset>
 				<?php
@@ -33,17 +32,15 @@ HTML;
 						if($is_recommended){
 							$class = 'alert-info';
 							$status_1_checked = 'checked="checked"';
-							$icon = '<i class="icon-info-sign icon-red popover-help-top" title="'.__('Alert Text').'" data-content="'.__('User active is Enable').'"></i>';
 						} else {
 							$class = 'alert';
 							$status_0_checked = 'checked="checked"';
-							$icon = '<i class="icon-info-sign icon-red popover-help-top" title="'.__('Alert Text').'" data-content="'.__('User active is Disable').'"></i>';
 						}
 						echo <<<HTML
                 <div id="{$key}-control-group" class="control-group {$class}">
 					<label for="{$key}" class="control-label">
 						<span class="add-on">
-							{$value['comment']}{$icon}
+							{$value['comment']}
 						</span>
 					</label>
 					<div class="controls">
@@ -63,12 +60,13 @@ HTML;
 						echo <<<HTML
                 <div id="{$key}-control-group" class="control-group alert-danger">
 					<label for="{$key}" class="control-label">
-						<span class="add-on">
-							{$value['comment']}{$icon}
-						</span>
+						{$value['comment']}
 					</label>
-					<div class="controls">
+					<div class="controls input-append">
 						<input type="password" name="{$key}" value="" id="{$key}" class="input-xlarge" placeholder="{$input}{$value['comment']}">
+						<span class="add-on">
+							{$icon}
+						</span>
 						<span id="{$key}-label" class="label label-important hide"></span>
 					</div>
 				</div>
@@ -124,10 +122,13 @@ HTML;
 						?>
 
 						<?php foreach($roles as $role):?>
-						<label for="role<?php echo $role->id?>" class="checkbox">
-						<input id="role<?php echo $role->id?>" name="role[<?php echo $role->id?>]" type="checkbox" <?php echo in_array($role->id, $user_roles)?'checked="checked"':'';?> />
-						<?php echo $role->name?>&nbsp;&nbsp;<a ><i class="icon-question-sign popover-help-top" title="<?php echo __('Help Text');?>" data-content="<?php echo $role->description?>"></i></a>
-						</label>
+						<label for="role<?php echo $role->id?>" class="checkbox inline">
+							<input id="role<?php echo $role->id?>" name="role[<?php echo $role->id?>]" type="checkbox" <?php echo in_array($role->id, $user_roles)?'checked="checked"':'';?> />
+							<?php echo $role->name?>
+                        </label>
+                        <span class="add-on inline">
+							<i class="icon-question-sign popover-help-top" title="<?php echo __('Help Text');?>" data-content="<?php echo $role->description?>"></i>
+						</span>
 						<?php endforeach;?>
 					</div>
 				</div>

@@ -44,13 +44,13 @@
                 </div>
                 <div class="control-group alert-danger">
                     <label  class="control-label"><?php echo __('Closed Site');?>
-                        <span class="add-on">
-                            <i class="icon-info-sign icon-red popover-help-top" title="<?php echo __('Alert Text')?>" data-content="<?php echo __('Closed Site Text');?>"></i>
-                        </span>
                     </label>
                     <div class="controls">
                         <label class="radio inline">
                             <?php echo Form::radio('closed_site', 'true', Arr::get($config, 'closed_site') == 'true', array('id'=>'closed_site')); echo __('Closed');?>
+                            <span class="add-on">
+								<i class="icon-info-sign icon-red popover-help-top" title="<?php echo __('Alert Text')?>" data-content="<?php echo __('Closed Site Text');?>"></i>
+							</span>
                         </label>
                         <label class="radio inline">
                             <?php echo Form::radio('closed_site', 'false', Arr::get($config, 'closed_site') == 'false'); echo __('Open');?>

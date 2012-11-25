@@ -67,12 +67,12 @@ class Controller_Admin extends Controller_Template {
         parent::before();
         if(!$this->request->is_ajax()){
             $this->media = Media::get_instance('admin');
-            $this->css('css/bootstrap.css');
+            $this->css('css/bootstrap.min.css');
             $this->css('css/font-awesome.css');
-            $this->css('css/bootstrap-responsive.css');
+            $this->css('css/bootstrap-responsive.min.css');
             $this->css('css/comasa.admin.css');
 
-            $this->js('js/jquery.min.1.8.2.js');
+            $this->js('js/jquery.1.8.2.min.js');
             $this->js('js/jquery.form.js');
             $this->js('js/bootstrap.min.js');
             $this->js('js/bootbox.js');
