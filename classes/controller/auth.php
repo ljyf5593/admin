@@ -35,7 +35,7 @@ class Controller_Auth extends Controller_Admin {
 
 			} elseif(!$this->request->is_ajax()){
 
-				$this->request->redirect(Route::url('admin', NULL, TRUE));
+				HTTP::redirect(Route::url('admin', NULL, TRUE));
 
 			}
 		}
@@ -48,7 +48,7 @@ class Controller_Auth extends Controller_Admin {
 	public function action_logout(){
 		Auth::instance()->logout(TRUE);
 		$url = Route::url('admin/auth', array('action'=>'login'), TRUE);
-		$this->request->redirect($url);
+        HTTP::redirect($url);
 	}
 
 	public function after(){

@@ -100,26 +100,27 @@
 					<!--//只要是管理员都可以查看首页信息-->
 					<li <?php echo Request::$current->controller() == 'home' ? 'class="active"':'';?>><a href="<?php echo Route::url('admin');?>"><i class="icon-home icon-aqua"></i> <?php echo __('Home')?></a></li>
 
-					<?php foreach($nav['top_nav'] as $key => $value):?>
-					<?php $controller = Arr::get($value, 'controller', $key);?>
+                    <?php
+                        $top_nav = Arr::get($nav, 'top_nav', array());
+                        foreach($top_nav as $key => $value):?>
+                        <?php $controller = Arr::get($value, 'controller', $key);?>
 
-					<?php if(isset($value['sub_nav']) AND is_array($value['sub_nav'])):?>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="<?php echo isset($value['icon'])?$value['icon']:'icon-'.$key?> icon-aqua"></i> <?php echo isset($value['name'])?__($value['name']):__(ucfirst($key))?>
-							<b class="caret"></b>
-						</a>
-						<ul class="dropdown-menu">
-							<?php foreach($value['sub_nav'] as $sub_key => $sub_nav):?>
-							<li><a href="<?php echo Route::url('admin', array('controller' => $controller, 'action' => $sub_key));?>"><i class="<?php echo $sub_nav['icon'];?>"></i> <?php echo isset($sub_nav['name'])?__($sub_nav['name']):__(ucfirst($sub_key))?></a></li>
-							<?php endforeach;?>
-						</ul>
-					</li>
-					<?php else :?>
-					<li <?php echo Request::$current->controller() == $controller ? 'class="active"':'';?>><a href="<?php echo Route::url('admin', array('controller'=>$controller))?>"><i class="<?php echo isset($value['icon'])?$value['icon']:'icon-'.$key?> icon-aqua"></i><?php echo isset($value['name'])?__($value['name']):__(ucfirst($key))?></a></li>
-					<?php endif;?>
-
-					<?php endforeach;?>
+                        <?php if(isset($value['sub_nav']) AND is_array($value['sub_nav'])):?>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="<?php echo isset($value['icon'])?$value['icon']:'icon-'.$key?> icon-aqua"></i> <?php echo isset($value['name'])?__($value['name']):__(ucfirst($key))?>
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <?php foreach($value['sub_nav'] as $sub_key => $sub_nav):?>
+                                    <li><a href="<?php echo Route::url('admin', array('controller' => $controller, 'action' => $sub_key));?>"><i class="<?php echo $sub_nav['icon'];?>"></i> <?php echo isset($sub_nav['name'])?__($sub_nav['name']):__(ucfirst($sub_key))?></a></li>
+                                    <?php endforeach;?>
+                                </ul>
+                            </li>
+                            <?php else :?>
+                            <li <?php echo Request::$current->controller() == $controller ? 'class="active"':'';?>><a href="<?php echo Route::url('admin', array('controller'=>$controller))?>"><i class="<?php echo isset($value['icon'])?$value['icon']:'icon-'.$key?> icon-aqua"></i><?php echo isset($value['name'])?__($value['name']):__(ucfirst($key))?></a></li>
+                        <?php endif;?>
+                    <?php endforeach;?>
 
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">

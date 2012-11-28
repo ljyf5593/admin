@@ -57,11 +57,8 @@
                     ?>
                     </td>
                     <?php endforeach;?>
-
-                    <td>
-                        <a class="btn btn-mini btn-info ajax" href="<?php echo Route::url('admin', array('controller'=>$controller, 'action' => 'edit', 'id'=>$model->pk()));?>"><i class="icon-edit"></i><?php echo __('Edit')?></a>
-                        <a class="btn btn-mini btn-danger ajax" href="<?php echo Route::url('admin', array('controller'=>$controller, 'action'=>'delete','id'=>$model->pk()));?>" data-confirm="<?php echo __('Are you sure to delete this object')?>?"><i class="icon-trash"></i><?php echo __('Delete')?></a>
-                    </td>
+                    <!-- // 单个操作 -->
+                    <?php include Kohana::find_file('views', 'admin/common/operation')?>
                 </tr>
                 <?php endforeach;?>
 

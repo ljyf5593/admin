@@ -13,22 +13,25 @@ class ORM extends Kohana_ORM {
 	protected $_list_row = array();
 	// 批量操作
 	protected $_batch_operation = array();
+    // 单个操作定制
+    protected $_operation = array();
 
 	// 需要加载富文本编辑器的列
 	public $editer_row = '';
-	/**
-	 * 获取搜索列的相关信息
-	 * Enter description here ...
-	 */
-	public function getSearchRow(){
+
+    /**
+     * 获取搜索列的相关信息
+     * @return array
+     */
+    public function getSearchRow(){
 		return array_intersect_key($this->_table_columns, array_fill_keys($this->_search_row, null));
 	}
 
-	/**
-	 * 获取显示在列表页列
-	 * Enter description here ...
-	 */
-	public function getListRow(){
+    /**
+     * 获取显示在列表页列
+     * @return array
+     */
+    public function getListRow(){
 
 		if(empty($this->_list_row)){
 			return $this->_table_columns;
@@ -45,6 +48,14 @@ class ORM extends Kohana_ORM {
 	public function getBatchOperation(){
 		return $this->_batch_operation;
 	}
+
+    /**
+     * 获取定制的单个操作
+     * @return array
+     */
+    public function getOperation(){
+        return $this->_operation;
+    }
 
 	/**
 	 * @static

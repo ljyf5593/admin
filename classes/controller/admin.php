@@ -72,7 +72,7 @@ class Controller_Admin extends Controller_Template {
             $this->css('css/bootstrap-responsive.min.css');
             $this->css('css/comasa.admin.css');
 
-            $this->js('js/jquery.1.8.2.min.js');
+            $this->js('js/jquery.1.8.3.min.js');
             $this->js('js/jquery.form.js');
             $this->js('js/bootstrap.min.js');
             $this->js('js/bootbox.js');
@@ -151,9 +151,7 @@ class Controller_Admin extends Controller_Template {
     }
 
     /**
-     * Check permissions for a certain Request
-     * 	Uses late static binding so child classes can override this
-     * 	in order to replace its functionality
+     * 检测用户针对请求的权限
      *
      * @param	Request	$request
      */
@@ -198,6 +196,11 @@ class Controller_Admin extends Controller_Template {
         }
     }
 
+    /**
+     * 页面跳转，整个页面跳转
+     * @param $url
+     * @param int $time
+     */
     protected function location($url, $time = 2){
         if($this->request->is_ajax()) {
             $json['location'] = $url;
@@ -232,9 +235,12 @@ class Controller_Admin extends Controller_Template {
         }
     }
 
+    /**
+     * 根据用户角色获取导航信息
+     * @return array|Kohana_Config_Group
+     */
     private function get_nav(){
         $nav = Kohana::$config->load('admin');
-
         // 如果是超级管理员不做权限判断
         if ($this->is_administrator) {
             return $nav;
