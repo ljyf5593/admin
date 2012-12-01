@@ -4,23 +4,23 @@
         <h2><i class="icon-tasks icon-blue"></i><?php echo __(ucfirst($action)).__($model_name);?></h2>
     </div>
     <div class="panel-content row-fluid">
-		<?php
-			$form_ajax = 'ajaxform'; // 默认表单ajax提交
-			if($model->editer_row != ''){ // 如果需要加载富文本编辑器则不适应ajax提交
-				$form_ajax = '';
-			}
-		?>
+        <?php
+            $form_ajax = 'ajaxform'; // 默认表单ajax提交
+            if($model->editer_row != ''){ // 如果需要加载富文本编辑器则不适应ajax提交
+                $form_ajax = '';
+            }
+        ?>
         <form class="form-horizontal <?php echo $form_ajax;?>" method="post" action="<?php echo Route::url('admin', array('controller' => Request::$current->controller(), 'action' => 'update', 'id' => $model->pk()))?>">
             <fieldset>
                 <?php $num = 0; foreach($list_columns as $key=>$value): $num++;?>
                 <?php
                 echo $num%2 ? '<div class="row-fluid">' : '';
-				// 获取各列的消息提示信息
-				list($message_label, $label_class) = Admin::get_message_label($key, $message);
+                // 获取各列的消息提示信息
+                list($message_label, $label_class) = Admin::get_message_label($key, $message);
 
                 switch($key){
-					case $model->editer_row: // 需要加载富文本的列，不在这里显示
-						break;
+                    case $model->editer_row: // 需要加载富文本的列，不在这里显示
+                        break;
                     case 'id':
                         echo <<<HTML
                 <div id="{$key}-control-group" class="control-group span6 {$label_class}">
@@ -59,7 +59,7 @@ HTML;
                         <label class="radio inline">
                             <input type="radio" name="{$key}" value="0">{$status[0]}
                         </label>
-						{$message_label}
+                        {$message_label}
                     </div>
                 </div>
 HTML;
@@ -105,7 +105,7 @@ HTML;
                             echo Form::input($key, $model->$key, array('id' => $key, 'class' => 'input-xlarge', 'placeholder' => __('Input').$value['comment']));
 
                         }
-						echo $message_label;
+                        echo $message_label;
                     ?>
                     </div>
                 </div>
@@ -117,19 +117,19 @@ HTML;
                 echo $num%2?'</div>':'';
                     ?>
 
-				<?php
-					if($model->editer_row != ''):
-						$key = $model->editer_row;
-						list($message_label, $label_class) = Admin::get_message_label($key, $message);
-				?>
-				<div id="content-control-group" class="control-group <?php echo $label_class?>">
-					<label for="content-edit" class="control-label"><?php echo $list_columns[$key]['comment'];?></label>
-					<div class="controls">
-						<textarea type="text" name="<?php echo $key;?>" id="content-edit" class="span9" rows="15"><?php echo $model->$key;?></textarea>
-						<?php echo $message_label;?>
-					</div>
-				</div>
-				<?php endif;?>
+                <?php
+                    if($model->editer_row != ''):
+                        $key = $model->editer_row;
+                        list($message_label, $label_class) = Admin::get_message_label($key, $message);
+                ?>
+                <div id="content-control-group" class="control-group <?php echo $label_class?>">
+                    <label for="content-edit" class="control-label"><?php echo $list_columns[$key]['comment'];?></label>
+                    <div class="controls">
+                        <textarea type="text" name="<?php echo $key;?>" id="content-edit" class="span10" rows="15"><?php echo $model->$key;?></textarea>
+                        <?php echo $message_label;?>
+                    </div>
+                </div>
+                <?php endif;?>
 
                 <div class="form-actions">
                     <button class="btn btn-primary" type="submit"><?php echo __('Save');?></button>

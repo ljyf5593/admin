@@ -19,12 +19,12 @@ return array
 			 * Ports and sockets may be appended to the hostname.
 			 */
 			'hostname'   => 'localhost',
-			'database'   => 'kohana',
+			'database'   => 'comasa',
 			'username'   => 'toor',
 			'password'   => '123698745',
 			'persistent' => FALSE,
 		),
-		'table_prefix' => 'kohana_',
+		'table_prefix' => 'comasa_',
 		'charset'      => 'utf8',
 		'caching'      => FALSE,
 	),

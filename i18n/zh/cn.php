@@ -109,7 +109,6 @@ return array
     'Create_time' => '创建时间',
     'Auto_increment' => '自增量',
     'Collation' => '字符集',
-    'Comment' => '注释',
     'Backup' => '数据备份',
     'Upgrade' => '数据升级',
     'Backup Location' => '备份位置',
