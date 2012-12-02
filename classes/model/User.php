@@ -38,8 +38,6 @@ class Model_User extends Model_Auth_User{
     protected $_search_row = array( 'id', 'username', 'email' );
     
     protected $_list_row = array( 'id',	'active', 'username', 'email', 'regdate', 'logins',	'last_login' );
-
-    public $date_format = array( 'regdate', 'last_login');
     
     /**
      * 批量操作动作
