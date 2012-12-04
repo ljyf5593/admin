@@ -36,6 +36,7 @@ class ORM extends Kohana_ORM {
 		if(empty($this->_list_row)){
 			return $this->_table_columns;
 		} else {
+            // array_intersect_key : 使用键名比较计算数组的交集
 			return array_intersect_key($this->_table_columns, array_fill_keys($this->_list_row, null));
 		}
 
