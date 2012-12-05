@@ -67,7 +67,7 @@ class Controller_Admin_Setting extends Controller_Admin {
 
 	public function action_previewmark(){
 
-		Watermark::instance()->preview();
+		Watermark::instance()->preview($this->response);
 
 	}
 }
