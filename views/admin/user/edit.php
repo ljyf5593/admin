@@ -79,7 +79,7 @@ HTML;
 				</div>
 HTML;
 						break;
-					case 'regdate':
+					case 'dateline':
 
 					case 'last_login':
 						$val = date(Date::$timestamp_format, $model->$key);

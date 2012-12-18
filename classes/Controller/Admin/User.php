@@ -23,7 +23,7 @@ class Controller_Admin_User extends Controller_Admin_Crud {
 		$id = intval($this->request->param('id'));
 		$model = ORM::factory('user', $id);
 		$post_data = $this->request->post();
-		$post_data['regdate'] = strtotime($post_data['regdate']);
+		$post_data['dateline'] = strtotime($post_data['dateline']);
 		$post_data['last_login'] = strtotime($post_data['last_login']);
 
 		try{
@@ -33,7 +33,7 @@ class Controller_Admin_User extends Controller_Admin_Crud {
 				}
 				$model->update_user($post_data);
 			} else {
-				$model->create_user($post_data, array('active', 'email', 'username', 'password', 'regdate'));
+				$model->create_user($post_data, array('active', 'email', 'username', 'password', 'dateline'));
 			}
 			$model->save();
 			$model->update_roles($this->request->post('role'));

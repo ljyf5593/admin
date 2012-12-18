@@ -32,7 +32,7 @@
                 <td>
                 <?php
                     switch($key){
-                        case 'regdate':
+                        case 'dateline':
 
                         case 'last_login':
                             echo date(Date::$timestamp_format, $model->$key);
