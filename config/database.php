@@ -18,10 +18,10 @@ return array
 			 *
 			 * Ports and sockets may be appended to the hostname.
 			 */
-			'hostname'   => 'localhost',
+			'hostname'   => 'tunnel.pagodabox.com',
 			'database'   => 'comasa',
-			'username'   => 'toor',
-			'password'   => '123698745',
+			'username'   => 'elanor',
+			'password'   => '7CNHt4M6',
 			'persistent' => FALSE,
 		),
 		'table_prefix' => 'comasa_',
