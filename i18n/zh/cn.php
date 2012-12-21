@@ -89,6 +89,11 @@ return array
     'User active is Disable' => '当前用户状态为禁用',
     'Change your password, please fill in here, otherwise leave blank' => '修改密码请填写这里，否则请留空',
 
+	'Article' => '文章',
+	'Category' => '栏目',
+	'content' => '内容',
+	'Unpublish' => '未发布',
+
 	'Faq' => '帮助',
 
     ':field must be at least :param2 characters long' => ':field至少:param2个字符',

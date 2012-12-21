@@ -12,6 +12,9 @@ return array(
 		'resource' => array(
 			'icon' => 'icon-paper-clip',
 		),
+		'article' => array(
+			'icon' => 'icon-leaf',
+		),
 		'faq' => array(
 			'icon' => 'icon-twitter',
 		),
