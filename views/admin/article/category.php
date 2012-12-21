@@ -17,16 +17,15 @@
 				<tbody>
 				<?php if (!empty($category)):?>
 					<?php echo $category;?>
-				<?php else:?>
-	<tr>
-		<td>&nbsp;</td>
-		<td>
-			<div><a href="javascript:void(0);" class="addtr" level="-1" catid="0">添加顶级栏目</a></div>
-		</td>
-		<td>&nbsp;</td>
-		<td>&nbsp;</td>
-	</tr>
 				<?php endif;?>
+					<tr>
+						<td>&nbsp;</td>
+						<td>
+							<div><a href="javascript:void(0);" class="addtr" level="-1" catid="0">添加顶级栏目</a></div>
+						</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
 				</tbody>
 			</table>
 			<div class="well">
