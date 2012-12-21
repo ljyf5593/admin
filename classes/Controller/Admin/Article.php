@@ -68,7 +68,7 @@ class Controller_Admin_Article extends Controller_Admin_Crud {
 		if($catid){
 			$category = new Model_Article_Category($catid);
 			if($category->loaded()){
-				$count = ORM::factory('article_category')->where('upid', '=', $category->id)->count_all();
+				$count = ORM::factory('Article_Category')->where('upid', '=', $category->id)->count_all();
 				if($count > 0){ // 如果该分类下有子分类，则不能删除
 					$this->set_status('error',  __("You cann't delete this recored, its child element is not empty"));
 				} else {
