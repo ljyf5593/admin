@@ -41,10 +41,12 @@ class Controller_Admin_Article extends Controller_Admin_Crud {
 				foreach($this->request->post('newname') as $key => $val){
 					if(is_array($val) AND !empty($val)){
 						foreach($val as $value){
-							$category = new Model_Article_Category();
-							$category->upid = $key;
-							$category->name = $value;
-							$category->save();
+							if($value){
+								$category = new Model_Article_Category();
+								$category->upid = $key;
+								$category->name = $value;
+								$category->save();
+							}
 						}
 					}
 				}
