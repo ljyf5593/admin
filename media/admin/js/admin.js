@@ -180,12 +180,7 @@
 
           // Select-all
           $("input.select-all").on("click", function(e){
-              if($(this).attr("checked") == "checked"){
-                  $("input.selection:enabled").attr("checked", true);
-              }
-              else{
-                  $("input.selection:enabled").attr("checked",false);
-              }
+              $("input.selection:enabled").attr("checked", $(this).is(":checked"));
           });
 
           //时间控件
