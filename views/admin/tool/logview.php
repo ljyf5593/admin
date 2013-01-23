@@ -1,5 +1,4 @@
 <?php defined('SYSPATH') or die('No direct script access.');?>
-
 <div class="panel">
     <div class="panel-header">
         <h2><i class="icon-cogs icon-blue"></i><?php echo __('Logview');?></h2>

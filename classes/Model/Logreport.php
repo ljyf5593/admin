@@ -13,14 +13,17 @@ class Model_Logreport{
 
     // Copy of Kohana_log_file log levels
     public static $levels = array(
-        LOG_EMERG => 'EMERGENCY',
-        LOG_ALERT => 'ALERT',
-        LOG_CRIT => 'CRITICAL',
-        LOG_ERR => 'ERROR',
-        LOG_WARNING => 'WARNING',
-        LOG_NOTICE => 'NOTICE',
-        LOG_INFO => 'INFO',
-        LOG_DEBUG => 'DEBUG',
+        'WARNING' => 'warning',
+        'ALERT' => 'warning',
+        'DEBUG' => 'warning',
+
+        'ERROR' => 'important',
+        'CRITICAL' => 'important',
+        'EMERGENCY' => 'important',
+
+        'NOTICE' => 'notice',
+
+        'INFO' => 'success',
     );
 
     function __construct($filepath)
@@ -50,7 +53,7 @@ class Model_Logreport{
 
                 $log = array();
                 $log['raw'] = $logRaw;
-                if($matches) { 
+                if($matches) {
                     $log['time'] = strtotime($matches[1]);
                     $log['level'] = $matches[2];    // Notice, Error etc.
                     $log['style'] = $this->_getStyle($matches[2]);    // CSS class for styling
@@ -64,7 +67,7 @@ class Model_Logreport{
                         $log['time'] = strtotime($matches[1]);
                         $log['level'] = $matches[2];    // Notice, Error etc.
                         $log['style'] = $this->_getStyle($matches[2]);    // CSS class for styling
-                        $log['type'] = '';     // Exception name
+                        $log['type'] = 'Custom';     // Exception name
                         $log['message'] = $matches[3];
                         $log['file'] = '';
                     }
@@ -78,17 +81,17 @@ class Model_Logreport{
             if (!isset($this->_logEntries[$last_log]['message'])){
                 $this->_logEntries[$last_log]['message'] = '';
             }
-            
+
             if (stripos($logRaw, 'STRACE') !== FALSE) {
                 $message = Arr::get($this->_logEntries[$last_log], 'message');
                 $this->_logEntries[$last_log]['message'] =  $message . '<br/><br/><p>Stack Trace:</p><ol style="font-family:consolas;font-size:8pt">';
             }
-            
+
             if (isset($logRaw[0]) && $logRaw[0] == '#') {
                 $logRaw = preg_replace('/#\d /', '', $logRaw);
                 $this->_logEntries[$last_log]['message'] .= '<li>'.$logRaw . '</li>';
             }
-            
+
             if (preg_match('/\{main\}/', $logRaw)) {
                 $this->_logEntries[$last_log]['message'] .= '</ol>';
             }
@@ -97,25 +100,7 @@ class Model_Logreport{
 
     private function _getStyle($level)
     {
-        switch($level){
-            case self::$levels[LOG_WARNING]:
-            case self::$levels[LOG_ALERT]:
-            case self::$levels[LOG_DEBUG]:
-                return 'warning';
-                break;
-            case self::$levels[LOG_ERR]:
-            case self::$levels[LOG_CRIT]:
-            case self::$levels[LOG_EMERG]:
-                return 'important';
-            break;
-            case self::$levels[LOG_NOTICE]:
-                return 'notice';
-            break;
-            case self::$levels[LOG_INFO]:
-                return 'success';
-            break;
-            default: '';
-        }
+        return isset(self::$levels[$level]) ? self::$levels[$level] : 'info';
     }
 
 }
