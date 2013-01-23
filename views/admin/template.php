@@ -12,7 +12,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<!--[if IE 7]>
-	<link href="<?php echo URL::site('/media/admin/css/font-awesome-ie7.css');?>" rel="stylesheet" type="text/css" />
+	<link href="<?php echo URL::site('/media/admin/css/font-awesome-ie7.min.css');?>" rel="stylesheet" type="text/css" />
 	<![endif]-->
 
 	<!-- CSS

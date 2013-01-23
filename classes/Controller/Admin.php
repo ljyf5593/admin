@@ -68,7 +68,7 @@ class Controller_Admin extends Controller_Template {
         if(!$this->request->is_ajax()){
             $this->media = Media::get_instance('admin');
             $this->css('css/bootstrap.min.css');
-            $this->css('css/font-awesome.css');
+            $this->css('css/font-awesome.min.css');
             $this->css('css/bootstrap-responsive.min.css');
             $this->css('css/comasa.admin.css');
 

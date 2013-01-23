@@ -27,7 +27,7 @@
             <div class="row-fluid">
                 <ul>
                     <li><a target="_blank" href="http://twitter.github.com/bootstrap/">Bootstrap, from Twitter</a> Version : 2.2.1</li>
-                    <li><a target="_blank" href="http://fortawesome.github.com/Font-Awesome/">Font Awesome</a> Version : 2.0</li>
+                    <li><a target="_blank" href="http://fortawesome.github.com/Font-Awesome/">Font Awesome</a> Version : 3.0.2</li>
                     <li><a target="_blank" href="http://jquery.com/">jQuery</a> Version : 1.8.3</li>
                     <li><a target="_blank" href="http://malsup.com/jquery/form/">jQuery Form Plugin</a> Version : 3.20</li>
                     <li><a target="_blank" href="http://bootboxjs.com/">Bootboxjs</a> Version : 2.5.0</li>
