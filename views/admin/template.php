@@ -166,11 +166,11 @@
 	</div><!--//row-->
 
 </div><!--/.fluid-container-->
-<div class="container-fluid">
-	<footer class="span12">
-		<p>Copyright &copy;  2012 Liu.Jie</p>
-	</footer>
-</div>
+<footer class="footer">
+    <div class="container">
+        <p>Copyright &copy;  2012 - <?php echo date('Y');?> Liu.Jie</p>
+    </div>
+</footer>
 
 <!--[if lt IE 9]>
 <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>

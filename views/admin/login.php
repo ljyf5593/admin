@@ -24,7 +24,7 @@
 	<link rel="shortcut icon" href="media/ico/favicon.ico">
 </head>
 <body>
-<div class="container-fluid">
+<div class="container">
 	<div class="row-fluid">
 		<div class="span12 content">
 			<div id="content">
@@ -66,11 +66,14 @@
 			</div><!-- content -->
 		</div>
 	</div><!--/row-->
-	<hr>
-	<footer>
-		<p>Copyright &copy;  2012 Liu.Jie</p>
-	</footer>
 </div><!--/.fluid-container-->
+
+<footer class="footer">
+    <div class="container">
+    <p>Copyright &copy;  2012 - <?php echo date('Y');?> Liu.Jie</p>
+    </div>
+</footer>
+
 </body>
 
 <!--[if lt IE 9]>

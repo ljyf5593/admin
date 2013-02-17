@@ -333,8 +333,11 @@ a:hover img.preview{
     font-weight: bold;
 }
 
-footer{
-    padding: 0px 20px;
+.footer {
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 70px;
+    border-top: 1px solid #e5e5e5;
 }
 
 /* fixd IE7 */
