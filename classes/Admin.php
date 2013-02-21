@@ -5,7 +5,7 @@ class Admin {
 	 * 从一个数组中获取消息，并返回符合后台模板的消息label
 	 * @param $key
 	 * @param $message
-	 * @return string
+	 * @return array
 	 */
 	public static function get_message_label($key, $message){
 		$label_class = '';

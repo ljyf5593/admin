@@ -153,7 +153,7 @@
 				<li <?php echo Request::$current->controller() == $controller ? 'class="active"':'';?>><a href="<?php echo Route::url('admin', array('controller' => $controller));?>"><i class="<?php echo Arr::get($value, 'icon', 'icon-'.$key);?> icon-aqua"></i> <?php echo __(ucfirst($key));?></a></li>
 				<?php endforeach;?>
 				<li class="nav-header">Another menu</li>
-				<li><a href="loginform.html"><i class="icon-user icon-aqua"></i> Login form</a></li>
+				<li><a><i class="icon-user icon-aqua"></i> Login form</a></li>
 			</ul>
 		</div>
 
