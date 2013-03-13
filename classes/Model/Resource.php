@@ -37,22 +37,15 @@ class Model_Resource extends ORM{
 	}
 	
 	/**
-	 * 生产上传文件路径
+	 * 生成上传文件路径
 	 */
 	private function uploadDir(){
 
-		//生成年月文件
-		$dir = date('Ym');
+		//生成年月文件夹和日期文件夹
+		$dir = date('Ym').DIRECTORY_SEPARATOR.date('d');
 		$abs = Upload::$default_directory.DIRECTORY_SEPARATOR.$dir;
 		if (!is_dir($abs)){
-			mkdir($abs);
-		}
-		
-		//生成日期文件
-		$dir = $dir.DIRECTORY_SEPARATOR.date('d');
-		$abs = Upload::$default_directory.DIRECTORY_SEPARATOR.$dir;
-	if (!is_dir($abs)){
-			mkdir($abs);
+			mkdir($abs, 0777, TRUE);
 		}
 		
 		return $dir.DIRECTORY_SEPARATOR;

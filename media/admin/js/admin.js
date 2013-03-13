@@ -246,7 +246,6 @@
               }
           });
 
-
           //=========== Application =========//
           var listTable = $main.find('#list-table');
           var listTableTr = listTable.find('tr').length;
