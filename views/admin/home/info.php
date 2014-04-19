@@ -26,13 +26,13 @@
         <div class="panel-content">
             <div class="row-fluid">
                 <ul>
-                    <li><a target="_blank" href="http://twitter.github.com/bootstrap/">Bootstrap, from Twitter</a> Version : 2.2.1</li>
-                    <li><a target="_blank" href="http://fortawesome.github.com/Font-Awesome/">Font Awesome</a> Version : 3.0.2</li>
-                    <li><a target="_blank" href="http://jquery.com/">jQuery</a> Version : 1.8.3</li>
-                    <li><a target="_blank" href="http://malsup.com/jquery/form/">jQuery Form Plugin</a> Version : 3.20</li>
-                    <li><a target="_blank" href="http://bootboxjs.com/">Bootboxjs</a> Version : 2.5.0</li>
-                    <li><a target="_blank" href="http://www.my97.net/"> My97 DatePicker</a> Version : 4.8 Beta2</li>
-                    <li><a target="_blank" href="http://www.kindsoft.net/"> KindEditor</a> Version : 4.1.4</li>
+                    <li><a target="_blank" href="http://twitter.github.com/bootstrap/">Bootstrap, from Twitter</a> Version : 2.3.2</li>
+                    <li><a target="_blank" href="http://fortawesome.github.com/Font-Awesome/">Font Awesome</a> Version : 3.2.1</li>
+                    <li><a target="_blank" href="http://jquery.com/">jQuery</a> Version : 1.10.2</li>
+                    <li><a target="_blank" href="https://github.com/malsup/form">jQuery Form Plugin</a> Version : 3.36</li>
+                    <li><a target="_blank" href="http://bootboxjs.com/">Bootboxjs</a> Version : 3.3.0</li>
+                    <li><a target="_blank" href="http://www.my97.net/"> My97 DatePicker</a> Version : 4.8 Beta3</li>
+                    <li><a target="_blank" href="http://www.kindsoft.net/"> KindEditor</a> Version : 4.1.7</li>
                     <li><a target="_blank" href="https://github.com/ajaxray/Kohana-Log-Viewer"> Kohana Log Viewer</a></li>
                 </ul>
             </div>

@@ -31,7 +31,7 @@ class Controller_Editor extends Controller {
 		$result['current_url'] = '';
 		//文件数
 		$result['total_count'] = $resource->count_all();
-		Kohana::$log->add(Log::DEBUG, print_r($_GET, TRUE));
+        
 		$pagination = new Pagination(array(
 			'total_items' => $result['total_count'],
 			'view' => 'pagination/admin',
@@ -52,8 +52,8 @@ class Controller_Editor extends Controller {
 				$file['filetype'] = File::mime($filepath);
 				$file['filename'] = $file_url; //文件名，包含扩展名
 				$file['datetime'] = date('Y-m-d H:i:s', filemtime($filepath)); //文件最后修改时间
+				$file_list[] = $file;
 			}
-			$file_list[] = $file;
 		}
 
 		//文件列表数组

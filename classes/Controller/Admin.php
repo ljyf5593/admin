@@ -9,6 +9,9 @@ class Controller_Admin extends Controller_Template {
 
     public $template = 'admin/template';
 
+    /**
+     * 当前用户可以执行的控制器
+     */
     public $user_actions = array();
 
     protected $media;
@@ -20,6 +23,11 @@ class Controller_Admin extends Controller_Template {
      * @var null
      */
     protected $login_user = NULL;
+
+    /**
+     * 当前请求是否是模态弹出层
+     */
+    protected $is_modal = FALSE;
 
 	/**
 	 * 是否超级管理员
@@ -65,6 +73,16 @@ class Controller_Admin extends Controller_Template {
 
     public function before(){
         parent::before();
+
+        $this->is_modal = $this->request->query('modal', FALSE);
+
+        $action = $this->request->action();
+        // 如果是增加和编辑动作，则使用模态弹出模板
+        if ($this->is_modal AND in_array($action, array('create', 'edit'))) {
+            $this->content = 'admin/edit_modal';
+        }
+        $this->content = View::factory($this->content)->set('action', $this->request->action());
+
         if(!$this->request->is_ajax()){
             $this->media = Media::get_instance('admin');
             $this->css('css/bootstrap.min.css');
@@ -72,10 +90,10 @@ class Controller_Admin extends Controller_Template {
             $this->css('css/bootstrap-responsive.min.css');
             $this->css('css/comasa.admin.css');
 
-            $this->js('js/jquery.1.8.3.min.js');
+            $this->js('js/jquery.min.js');
             $this->js('js/jquery.form.js');
             $this->js('js/bootstrap.min.js');
-            $this->js('js/bootbox.js');
+            $this->js('js/bootbox.min.js');
             $this->js('DatePicker/WdatePicker.js');
             $this->js('kindEditor/kindeditor.js');
             $this->js('kindEditor/lang/zh_CN.js');
@@ -89,7 +107,6 @@ class Controller_Admin extends Controller_Template {
     public function after(){
 
         // 设置内容信息
-        $this->content = View::factory($this->content);
         $this->content->main = $this->main;
         $this->content->top_actions = $this->top_actions;
         $this->content->status = $this->status;

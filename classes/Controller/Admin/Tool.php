@@ -83,7 +83,7 @@ class Controller_Admin_Tool extends Controller_Admin {
                 }
 
             } else {
-                $this->set_status('error', 'Table must to be selected');
+                $this->set_status('error', __('Table must to be selected'));
             }
         }
 
@@ -133,7 +133,7 @@ class Controller_Admin_Tool extends Controller_Admin {
                             break;
 
                         default :
-                            $this->set_status('error', 'Please selected the type');
+                            $this->set_status('error', __('Please selected the type'));
                             break;
                     }
 
@@ -144,7 +144,7 @@ class Controller_Admin_Tool extends Controller_Admin {
                 }
 
             } else {
-                $this->set_status('error', 'Please Input the SQL');
+                $this->set_status('error', __('Please Input the SQL'));
             }
         }
 
@@ -162,8 +162,8 @@ class Controller_Admin_Tool extends Controller_Admin {
             $date = date('Y-m-d');
         }
 
-        $level = $this->request->query('level', null);
-        $this->main = View::factory('admin/tool/logview', $this->_getLogReport($date, $level, $mode));
+        $level = $this->request->query('level', NULL);
+        $this->main = View::factory('admin/tool/logview', $this->_getLogReport($date, $level, $mode))->set('current_level', $level);
     }
 
     /**
@@ -178,10 +178,10 @@ class Controller_Admin_Tool extends Controller_Admin {
                 $this->set_status('success', __('delete the log file successed'));
             }
         }else {
-            $this->set_status('failed', 'File not found');
+            $this->set_status('error', __('File not found'));
         }
         
-        $this->redirect(URL::site('admin/tool/logview'));
+        $this->redirect('/admin/tool/logview');
     }
 
     /**
@@ -194,7 +194,6 @@ class Controller_Admin_Tool extends Controller_Admin {
         } catch(Cache_Exception $e) {
             $memcache = NULL;
         }
-
 
         if($this->request->query('ac') == 'flush'){
 

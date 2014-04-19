@@ -21,7 +21,7 @@ class Controller_Admin_Permission extends Controller_Admin_Crud {
             $this->main->perms = $this->get_all_perms();
 
             //获取当前编辑的用户角色
-            $role = ORM::factory('role', $id);
+            $role = ORM::factory('Role', $id);
 
             if(HTTP_Request::POST == $this->request->method()) {
 

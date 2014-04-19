@@ -64,13 +64,6 @@
                         <span class="help-inline"><?php echo __('closed_info_text')?></span>
                     </div>
                 </div>
-                <div class="control-group">
-                    <label for="statcode" class="control-label"><?php echo __('Statcode')?></label>
-                    <div class="controls">
-                        <textarea rows="3" id="statcode" name="statcode" class="input-xlarge" ><?php echo Arr::get($config, 'statcode');?></textarea>
-                        <span class="help-inline"></span>
-                    </div>
-                </div>
 
                 <div class="form-actions">
                     <button class="btn btn-primary stateful" type="submit" data-loading-text="<?php echo __('submit')?>..."><?php echo __('Save');?></button>

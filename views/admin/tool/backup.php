@@ -33,7 +33,7 @@
 				<label  class="control-label"><?php echo __('Backup Location');?></label>
 				<div class="controls">
 					<label class="radio inline">
-						<?php echo Form::radio('type', 'online'); echo __('Online');?>
+						<?php echo Form::radio('type', 'online', TRUE); echo __('Online');?>
 					</label>
 					<label class="radio inline">
 						<?php echo Form::radio('type', 'local'); echo __('Local');?>

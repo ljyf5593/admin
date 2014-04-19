@@ -3,7 +3,7 @@
 define('ADMIN_VERSION', '0.0.1');
 
 // 超级管理员角色名称
-define('ADMINISTRATOR', 'admin');
+define('ADMINISTRATOR', 'administrator');
 
 /**
  * 初始化文件 包含路由信息

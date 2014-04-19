@@ -7,13 +7,13 @@
 		<h2><i class="icon-list-alt icon-blue"></i><?php echo __($model_name).__('List')?></h2>
 		<div class="actions-bar">
 			<div class="btn-group pull-right">
-				<?php echo HTML::anchor(Route::url('admin', array('controller' => $controller, 'action'=>'create')), '<i class="icon-plus"></i>'.__('Create').__($model_name), array('class' => 'btn btn-success btn-mini ajax'));?>
+				<?php echo HTML::anchor(Route::url('admin', array('controller' => $controller, 'action'=>'create')), '<i class="icon-plus"></i>'.__('Create').__($model_name), array('class' => 'btn btn-success btn-mini ajax-modal'));?>
 				<a class="btn btn-success btn-mini dropdown-toggle" data-toggle="dropdown">
 					<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu">
 					<li>
-						<?php echo HTML::anchor(Route::url('admin', array('controller' => $controller, 'action'=>'create')), '<i class="icon-plus"></i>'.__('Create').__($model_name), array('class' => 'ajax'));?>
+						<?php echo HTML::anchor(Route::url('admin', array('controller' => $controller, 'action'=>'create')), '<i class="icon-plus"></i>'.__('Create').__($model_name), array('class' => 'ajax-modal'));?>
 					</li>
 				</ul>
 			</div>
@@ -39,7 +39,7 @@
 
 				<td>
 				<?php
-					echo HTML::anchor(Route::url('admin', array('controller'=>$controller, 'action' => 'edit', 'id'=>$model->pk()), TRUE), '<i class="icon-edit"></i>'.__('Edit'), array('class' => 'btn btn-mini btn-info ajax'))."\n";
+					echo HTML::anchor(Route::url('admin', array('controller'=>$controller, 'action' => 'edit', 'id'=>$model->pk()), TRUE), '<i class="icon-edit"></i>'.__('Edit'), array('class' => 'btn btn-mini btn-info ajax-modal'))."\n";
 					if($model->name != ADMINISTRATOR){
 						echo HTML::anchor(Route::url('admin', array('controller'=>$controller, 'action' => 'perm', 'id'=>$model->pk()), TRUE), '<i class="icon-check"></i>'.__('Permission'), array('class' => 'btn btn-mini btn-warning ajax'))."\n";
 					}

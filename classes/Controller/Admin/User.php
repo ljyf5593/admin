@@ -21,7 +21,7 @@ class Controller_Admin_User extends Controller_Admin_Crud {
 
 	public function action_update(){
 		$id = intval($this->request->param('id'));
-		$model = ORM::factory('user', $id);
+		$model = ORM::factory('User', $id);
 		$post_data = $this->request->post();
 		$post_data['dateline'] = strtotime($post_data['dateline']);
 		$post_data['last_login'] = strtotime($post_data['last_login']);
@@ -48,7 +48,7 @@ class Controller_Admin_User extends Controller_Admin_Crud {
 	}
 
 	public function after() {
-		View::set_global('roles', ORM::factory('role')->find_all());
+		View::set_global('roles', ORM::factory('Role')->find_all());
 
 		parent::after();
 	}

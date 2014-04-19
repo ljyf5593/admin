@@ -87,7 +87,7 @@ class Model_User extends Model_Auth_User{
      * @param string $username
      */
     public function username_vailable($username){
-        return ORM::factory('user', array('username'=>$username))->loaded();
+        return ORM::factory('User', array('username'=>$username))->loaded();
     }
     
     /**

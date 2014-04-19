@@ -13,7 +13,7 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li>
-                        <?php echo HTML::anchor(Route::url('admin', array('controller' => $controller, 'action'=>'create')), '<i class="icon-plus"></i>'.__('Create').__($model_name), array('class' => 'ajax'));?>
+                        <?php echo HTML::anchor(Route::url('admin', array('controller' => $controller, 'action'=>'create')), '<i class="icon-plus"></i>'.__('Create').__($model_name), array('class' => 'ajax-modal'));?>
                     </li>
                 </ul>
             </div>

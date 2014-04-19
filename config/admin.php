@@ -9,15 +9,6 @@ return array(
 		'permission' => array(
 			'icon' => 'icon-signin',
 		),
-		'resource' => array(
-			'icon' => 'icon-paper-clip',
-		),
-		'article' => array(
-			'icon' => 'icon-leaf',
-		),
-		'faq' => array(
-			'icon' => 'icon-twitter',
-		),
 		'tool' => array(
 			'icon' => 'icon-magic',
 			'sub_nav' => array(
@@ -34,5 +25,15 @@ return array(
 		),
 	),
 
-	'side_nav' => array(),
+	'side_nav' => array(
+		'resource' => array(
+			'icon' => 'icon-paper-clip',
+		),
+		'faq' => array(
+			'icon' => 'icon-twitter',
+		),
+		'article' => array(
+			'icon' => 'icon-leaf',
+		),
+	),
 );

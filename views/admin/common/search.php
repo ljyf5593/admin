@@ -15,7 +15,7 @@
                 if(method_exists($model, $func)){
                     echo '<label class="search-label">'.$comment.'</label>'.$model->$func();
 
-                }elseif($key == 'id'){
+                }elseif($value['type'] === 'int'){
                     echo '<label class="search-label">'.$comment.'</label>'.Form::input($key, NULL, array('class' => 'input-mini', 'placeholder' => $value['comment']));
                 }else{ // 判断是否可以模糊查询，是则显示一个特殊标识
                     echo '<label class="search-label">'.$comment.( ORM::isFuzzyQuery($value) ? ' <i class="icon-asterisk popover-help-top" title="'.__('Help Text').'" data-content="'.__('Fuzzy query').'"></i>':'').'</label>'.Form::input($key, NULL, array('class' => 'input-medium', 'placeholder' => $value['comment']));

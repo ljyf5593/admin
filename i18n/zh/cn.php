@@ -61,11 +61,13 @@ return array
     'Closed Info' => '站点关闭信息',
     'closed_info_text' => '若站点关闭，用户访问站点时显示的提示信息',
     'Statcode' => '第三方统计代码',
+    'share_plug' => '第三方分享插件',
     'Closed' => '关闭',
     'Open' => '开启',
 
     'Watermark' => '水印',
     'Position' => '位置',
+    'Preview' => '预览',
     'left_top' => '左上角',
     'right_top' => '右上角',
     'center' => '中央',
@@ -119,8 +121,11 @@ return array
     'Backup Location' => '备份位置',
     'Online' => '线上',
     'Local' => '本地',
+
     'Backup the Database to the file :file_name success' => '数据库数据成功备份到:file_name',
     'Table must to be selected' => '请选择要备份的数据表',
+    'Please selected the type' => '请选择类型',
+    'Please Input the SQL' => '请输入SQL语句',
     'Delete the log file successed' => '删除日志文件成功',
 
     'SQL statements' => 'SQL语句',
@@ -129,6 +134,9 @@ return array
     'Records' => '记录数',
 
     'Logview' => '运行记录',
+    'raw mode' => '原始视图',
+    'formatted mode' => '格式化视图',
+    'clear this logs' => '删除此日志',
 
     'Cache' => '缓存',
     'Flush' => '刷新',

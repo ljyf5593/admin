@@ -48,8 +48,8 @@ abstract class Controller_Admin_Crud extends Controller_Admin {
             'view' => 'pagination/admin',
         ));
 
-        $order = $this->request->param('order');
-        $by = $this->request->param('by', 'desc');
+        // 获取排序相关参数
+        list($order, $by) = $this->get_order_param('dateline');
         if($order){
             $model->order_by($order, $by);
         }
@@ -69,6 +69,7 @@ abstract class Controller_Admin_Crud extends Controller_Admin {
         $id = intval($this->request->param('id'));
         $model = ORM::factory($this->_model, $id);
         $this->main = $this->load_view('edit', $model);
+        $this->main->date_row = $model->getDateRow();
         if($model->loaded()){
             return $model;
         } else {
@@ -89,14 +90,15 @@ abstract class Controller_Admin_Crud extends Controller_Admin {
             $model->values($this->request->post())->save();
 
             $this->set_status('success');
+            if($this->request->is_ajax()){
+                $this->send_json();
+            }
 
         }catch (ORM_Validation_Exception $e){
 			$message = $e->errors('validation');
 			$this->main->message = $message;
             return $this->set_status('error', $message);
         }
-
-        $this->action_index();
     }
 
     public function action_delete(){
@@ -172,6 +174,8 @@ abstract class Controller_Admin_Crud extends Controller_Admin {
     /**
      * 加载视图文件
      * @param $file
+     * @param $model  todo
+     * @param $message 操作提示信息
      * @return View
      */
     protected function load_view($file, $model = NULL, $message = array()){
@@ -185,8 +189,7 @@ abstract class Controller_Admin_Crud extends Controller_Admin {
 
 		if($model instanceof ORM){
 			$view->list_columns = $model->list_columns();
-			$view->model = $model;
-			$view->action = $this->request->action();
+			View::set_global('model', $model);
 		}
 
 		// 加载一个message信息
@@ -196,7 +199,7 @@ abstract class Controller_Admin_Crud extends Controller_Admin {
     }
     
     /**
-     * 处理搜索信息
+     * 处理搜索信息,有缓存效果
      * @param ORM $model
      * @param $search_row
      * @return ORM 返回加入了搜索条件的ORM对象
@@ -204,17 +207,54 @@ abstract class Controller_Admin_Crud extends Controller_Admin {
     protected function search_field(ORM $model, $search_row){
         // 获取搜索列
         $search = $this->request->query();
+
+        // 查看当前次是否有新的搜索条件
+        $where = array();
         foreach($search_row as $key => $value){
             if(isset($search[$key]) AND $search[$key] != ''){
                 if(ORM::isFuzzyQuery($value)){
-                    $model->where($key, 'LIKE', '%'.$search[$key].'%');
+                    $where[] = array($key, 'LIKE', '%'.$search[$key].'%');
                 }else {
-                    $model->where($key, '=', $search[$key]);
+                    $where[] = array($key, '=', $search[$key]);
                 }
+            }
+        }
+
+        // 如果这次没有需要新的搜索条件，则读取一次缓存中的搜索条件
+        $cache_name = $this->_model.'where';
+        if(empty($where)){
+            $where = Kohana::cache($cache_name);
+
+            // 缓存只读取一次,所以获取以后就删除
+            Kohana::cache($cache_name, array());
+
+        } else { // 否则缓存这一次的搜索参数
+            Kohana::cache($cache_name, $where);
+        }
+
+        if( ! empty($where)) { // 如果获取到了搜索参数
+            foreach($where as $condition){
+                $model->where($condition[0], $condition[1], $condition[2]);
             }
         }
 
         return $model;
     }
 
-} // End App
+    /**
+     * 获取排序参数，有缓存效果
+     */
+    protected function get_order_param($default_order = NULL){
+        $order = $this->request->param('order', $default_order);
+        $by = $this->request->param('by', 'desc');
+        $cache_name = $this->_model.'order';
+        $result = array($order, $by);
+        if($order){
+            Kohana::cache($cache_name, $result);
+        } else {
+            $result = Kohana::cache($cache_name);
+        }
+        return $result;
+    }
+
+} // End Crud

@@ -41,19 +41,7 @@
 
 </div> <!-- //top-bar -->
 <div class="content">
-    <?php if(isset($status) AND $status != '' AND $status_info != ''):?>
-    <div class="span3 alert alert-<?php echo $status?> show-msg">
-        <a class="close" data-dismiss="alert" href="#">×</a>
-        <i class="icon-bullhorn icon-large"></i>
-        <span><?php echo is_array($status_info)?current($status_info):$status_info;?></span>
-    </div>
-    <?php else:?>
-    <div class="alert alert-success show-msg hide">
-        <a class="close" data-dismiss="alert" href="#">×</a>
-        <i class="icon-bullhorn icon-large"></i>
-        <span></span>
-    </div>
-    <?php endif;?>
+    
     <?php echo $main;?>
 
     <?php if (Kohana::$environment == Kohana::DEVELOPMENT) :?>

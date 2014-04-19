@@ -6,3 +6,5 @@
 	
 	// 需要加载富文本的列
 	public $editer_row = 'content';
+
+    public function

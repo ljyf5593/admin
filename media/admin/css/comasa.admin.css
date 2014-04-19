@@ -19,6 +19,8 @@ body {
 	padding-top: 40px;
 	background: #e0e0e0;
 	color: #15354c;
+    font-size: 12px;
+    line-height: 18px;
 }
 .container-fluid {
 	padding-left: 0;
@@ -49,9 +51,6 @@ body {
 }
 a [class^="icon-"],.panel-header [class^="icon-"], .alert-icon [class^="icon-"]{
 	margin-right:6px;
-}
-.operations .btn [class^="icon-"]{
-	margin-right:0px;
 }
 .icon-green {
 	color : green;
@@ -224,9 +223,6 @@ span.popup-content img{
 	float: left;
     margin: 0;
 }
-.panel-header i{
-	/*float: left;*/
-}
 .panel-header .actions-bar{
 	margin-top: 4px;
 }
@@ -242,14 +238,9 @@ span.popup-content img{
 
 
 /* 6. Table  */
-table td.operations{
-	width: 162px;
-}
-table .filters td{
-	border-top: none;
-}
-.filters input, .filters textarea, .filters select, .filters .uneditable-input {
-	width: 90%;
+.table td {
+    word-break:break-all;
+    max-width: 650px;
 }
 
 
@@ -295,6 +286,12 @@ table .filters td{
     width: 200px;
 }
 
+/* 9. modal */
+#modal-content {
+    width: 80%;
+    margin-left: -40%;
+}
+
 /* Category */
 .table td.level1 {
     background: url("../img/bg_repno.gif") no-repeat scroll -230px -538px transparent;
@@ -332,6 +329,9 @@ a:hover img.preview{
     left: 35%;
     font-weight: bold;
 }
+.ajaxstatus, .show-msg {
+    z-index: 2000;
+}
 
 .footer {
     text-align: center;
@@ -346,4 +346,7 @@ a:hover img.preview{
 .ie7 .dropdown-toggle {padding-top: 4px;}
 .ie7 i[class^="icon-"], li[class*=" icon-"] {
     padding-top: 2px;
+}
+.ie7 .input-append input {
+    position: static;
 }

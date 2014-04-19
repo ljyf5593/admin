@@ -10,9 +10,9 @@
             <select class="input-small" name="level">
                 <option value="">--All--</option>
                 <?php
-                foreach (Model_Logreport::$levels as $level):
-                    $select = ($log_level == $level) ? 'selected' : '';
-                    echo "<option $select value=\"". strtoupper($level).'">'.$level.'</option>';
+                foreach (Model_Logreport::$levels as $key => $level):
+                    $select = ($current_level == $key) ? 'selected="selected"' : '';
+                    echo "<option $select value=\"". strtoupper($key).'">'.$key.'</option>';
                 endforeach;
                 ?>
             </select>
@@ -33,11 +33,11 @@
                 $params['date'] = $request->query('date');
             ?>
             <?php if($mode == 'raw'): ?>
-            <a class="btn btn-success ajax" href="<?php echo Route::url('admin', array('controller' => $request->controller(), 'action' => 'logview'));?>?mode=formatted&<?php echo http_build_query($params)?>">formatted mode</a>
+            <a class="btn btn-success ajax" href="<?php echo Route::url('admin', array('controller' => $request->controller(), 'action' => 'logview'));?>?mode=formatted&<?php echo http_build_query($params)?>"><?php echo __('formatted mode');?></a>
             <?php else: ?>
-            <a class="btn btn-info ajax" href="<?php echo Route::url('admin', array('controller' => $request->controller(), 'action' => 'logview'));?>?mode=raw&<?php echo http_build_query($params)?>">raw mode</a>
+            <a class="btn btn-info ajax" href="<?php echo Route::url('admin', array('controller' => $request->controller(), 'action' => 'logview'));?>?mode=raw&<?php echo http_build_query($params)?>"><?php echo __('raw mode');?></a>
             <?php endif; ?>
-            <a class="btn btn-danger ajax" href="<?php echo Route::url('admin', array('controller' => $request->controller(), 'action' => 'deletelog', 'id' => $date)) ?>" data-confirm="<?php echo __('Are you sure to execute the operation');?>?">clear this logs</a>
+            <a class="btn btn-danger ajax" href="<?php echo Route::url('admin', array('controller' => $request->controller(), 'action' => 'deletelog', 'id' => $date)) ?>" data-confirm="<?php echo __('Are you sure to execute the operation');?>?"><?php echo __('clear this logs');?></a>
             </div>
         </form>
 

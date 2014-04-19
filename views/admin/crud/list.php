@@ -7,13 +7,13 @@
         <h2><i class="icon-list-alt icon-blue"></i><?php echo __($model_name).__('List')?></h2>
         <div class="actions-bar">
             <div class="btn-group pull-right">
-                <?php echo HTML::anchor(Route::url('admin', array('controller' => $controller, 'action'=>'create'), TRUE), __('Create').__($model_name), array('class' => 'btn btn-success btn-mini ajax'));?>
+                <?php echo HTML::anchor(Route::url('admin', array('controller' => $controller, 'action'=>'create'), TRUE), __('Create').__($model_name), array('class' => 'btn btn-success btn-mini ajax-modal'));?>
                 <a class="btn btn-success btn-mini dropdown-toggle" data-toggle="dropdown">
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
                     <li>
-                        <?php echo HTML::anchor(Route::url('admin', array('controller' => $controller, 'action'=>'create'), TRUE), '<i class="icon-plus"></i>'.__('Create').__($model_name), array('class' => 'ajax'));?>
+                        <?php echo HTML::anchor(Route::url('admin', array('controller' => $controller, 'action'=>'create'), TRUE), '<i class="icon-plus"></i>'.__('Create').__($model_name), array('class' => 'ajax-modal'));?>
                     </li>
                 </ul>
             </div> <!-- // btn-group -->
@@ -38,21 +38,17 @@
                     <?php foreach($list_row as $key => $value):?>
                     <td>
                     <?php
-                        switch($key){
-                            case 'dateline':
-
-                            case 'update':
-                                echo date(Date::$timestamp_format, $model->$key);
-                                break;
-
-                            default :
-                                $func_name = 'get_'.$key;
-                                if(method_exists($model, $func_name)){
-                                    echo $model->$func_name();
-                                } else {
-                                    echo  $model->$key;
-                                }
-                                break;
+                        if(in_array($key, $model->date_row)){
+                            echo date('Y-m-d', $model->$key);
+                        } elseif(in_array($key, $model->time_row)){
+                            echo date(Date::$timestamp_format, $model->$key);
+                        } else {
+                            $func_name = 'get_'.$key;
+                            if(method_exists($model, $func_name)){
+                                echo $model->$func_name();
+                            } else {
+                                echo  $model->$key;
+                            }
                         }
                     ?>
                     </td>

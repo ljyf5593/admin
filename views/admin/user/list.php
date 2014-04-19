@@ -7,12 +7,12 @@
         <h2><i class="icon-list-alt icon-blue"></i><?php echo __($model_name).__('List')?></h2>
         <div class="actions-bar">
             <div class="btn-group pull-right">
-                <a class="btn btn-success btn-mini ajax" href="<?php echo Route::url('admin', array('controller' => $controller, 'action'=>'create'))?>"><i class="icon-plus"></i><?php echo __('Create').__('User');?></a>
+                <a class="btn btn-success btn-mini ajax-modal" href="<?php echo Route::url('admin', array('controller' => $controller, 'action'=>'create'))?>"><i class="icon-plus"></i><?php echo __('Create').__('User');?></a>
                 <a class="btn btn-success btn-mini dropdown-toggle" data-toggle="dropdown">
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="ajax" href="<?php echo Route::url('admin', array('controller' => $controller, 'action'=>'create'))?>"><i class="icon-plus"></i><?php echo __('Create').__('User');?></a></li>
+                    <li><a class="ajax-modal" href="<?php echo Route::url('admin', array('controller' => $controller, 'action'=>'create'))?>"><i class="icon-plus"></i><?php echo __('Create').__('User');?></a></li>
                 </ul>
             </div>
         </div>

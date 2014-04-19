@@ -31,7 +31,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</a>
-			<a class="brand" target="_blank" href="<?php echo URL::site('/');?>">Comasa</a>
+			<a class="brand" target="_blank" href="<?php echo URL::site('/');?>">爱教练私教网</a>
 			<div class="btn-group pull-right">
 				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 					<i class="icon-user"></i> <?php echo $user->username;?>
@@ -128,7 +128,7 @@
 							<b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu">
-							<li><a href="<?php echo Route::url('admin', array('controller' => 'article', 'action' => 'create'));?>"><i class="icon-edit"></i> Create article</a></li>
+							<li><a href="#"><i class="icon-edit"></i> Create article</a></li>
 							<li><a href="#"><i class="icon-plus"></i> Add user</a></li>
 							<li class="divider"></li>
 							<li><a href="#"><i class="icon-comment"></i> Comments</a></li>
@@ -153,13 +153,26 @@
 				<li <?php echo Request::$current->controller() == $controller ? 'class="active"':'';?>><a href="<?php echo Route::url('admin', array('controller' => $controller));?>"><i class="<?php echo Arr::get($value, 'icon', 'icon-'.$key);?> icon-aqua"></i> <?php echo __(ucfirst($key));?></a></li>
 				<?php endforeach;?>
 				<li class="nav-header">Another menu</li>
-				<li><a><i class="icon-user icon-aqua"></i> Login form</a></li>
 			</ul>
 		</div>
 
 		<!-- //progress -->
-		<div id="ajaxstatus" class="ajaxstatus"><div class="progress progress-striped active hide"><div class="bar" style="width: 25%;"></div></div></div>
+		<div id="ajaxstatus" class="ajaxstatus">
+			<div class="progress progress-striped active hide">
+				<div class="bar" style="width: 25%;"></div>
+			</div>
+		</div>
 
+		<!-- // show-msg -->
+		<div id="show-msg" class="alert alert-success show-msg hide">
+		    <a class="close" data-dismiss="alert" href="#">×</a>
+		    <i class="icon-bullhorn icon-large"></i>
+		    <span></span>
+		</div>
+
+		<!-- Modal -->
+		<div id="modal-content" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal-contentLabel" aria-hidden="true">
+		</div>
 		<div id="content" class="span10 main">
 			<?php echo $content;?>
 		</div><!-- //main -->
