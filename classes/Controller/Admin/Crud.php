@@ -48,15 +48,18 @@ abstract class Controller_Admin_Crud extends Controller_Admin {
             'view' => 'pagination/admin',
         ));
 
+        // 获取显示的列表列
+        $list_row = $model->getListRow();
+
         // 获取排序相关参数
         list($order, $by) = $this->get_order_param('dateline');
-        if($order){
+        if($order AND isset($list_row[$order])){
             $model->order_by($order, $by);
         }
 
         $this->main->set(array(
             'model_list' => $model->limit($pagination->items_per_page)->offset($pagination->offset)->find_all(),
-            'list_row' => $model->getListRow(),
+            'list_row' => $list_row,
             'search' => array('model' => $model, 'search_row' => $search_row),
             'batch_operations' => $model->getBatchOperation(),
             'pagination' => $pagination,

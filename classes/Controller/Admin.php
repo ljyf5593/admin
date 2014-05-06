@@ -188,7 +188,7 @@ class Controller_Admin extends Controller_Template {
             if($auth_instance->logged_in(ADMINISTRATOR)){
 				return $this->is_administrator = TRUE;
             }
-
+            
             $this->user_actions = $this->login_user->get_permissions();
 
             $controller = strtolower($request->controller());
