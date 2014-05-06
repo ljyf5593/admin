@@ -182,10 +182,11 @@ class Controller_Admin extends Controller_Template {
             $this->redirect_login();
 
         } else {
-            $this->login_user = $auth_instance->get_user();
+            $login_user = $auth_instance->get_user();
+            $this->login_user = $login_user;
 
             // 如果是超级管理员直接返回
-            if($auth_instance->logged_in(ADMINISTRATOR)){
+            if($login_user->username == ADMINISTRATOR){
 				return $this->is_administrator = TRUE;
             }
             
@@ -208,7 +209,8 @@ class Controller_Admin extends Controller_Template {
 
                     $body = $message;
                 }
-                echo $request->response()->body($body);die();
+                echo $request->response()->body($body);
+                die();
             }
         }
     }
