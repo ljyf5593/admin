@@ -46,6 +46,6 @@
         <div class="panel-content">
             Powered by <?php echo HTML::mailto('ljyf5593@gmail.com', '<i class="icon-envelope"></i>Jie.Liu');?>
             <br />
-            Copyright © 2012-2012, Jie.Liu, All Rights Reserved
+            Copyright © 2012-<?php echo date('Y');?>, Jie.Liu, All Rights Reserved
         </div>
     </div>

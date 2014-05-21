@@ -128,8 +128,7 @@
 							<b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu">
-							<li><a href="#"><i class="icon-edit"></i> Create article</a></li>
-							<li><a href="#"><i class="icon-plus"></i> Add user</a></li>
+							<li><a href="/admin/user/create"><i class="icon-plus"></i><?php echo __('Create').__('User');?></a></li>
 							<li class="divider"></li>
 							<li><a href="#"><i class="icon-comment"></i> Comments</a></li>
 							<li><a href="#"><i class="icon-user"></i> users</a></li>
