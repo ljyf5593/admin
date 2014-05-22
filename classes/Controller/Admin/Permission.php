@@ -68,7 +68,7 @@ class Controller_Admin_Permission extends Controller_Admin_Crud {
 
             if(HTTP_Request::POST == $this->request->method()) {
 
-                $role->permissions = serialize($this->request->post('perm'));
+                $role->permissions = json_encode($this->request->post('perm'));
                 $role->save();
 
                 $this->set_status('success');
@@ -78,7 +78,7 @@ class Controller_Admin_Permission extends Controller_Admin_Crud {
             }
 
             $role_perms = array();
-            $role->permissions = unserialize($role->permissions);
+            $role->permissions = json_decode($role->permissions, TRUE);
             if(is_array($role->permissions)){
                 $role_perms = $role->permissions;
             }
