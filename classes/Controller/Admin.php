@@ -14,6 +14,9 @@ class Controller_Admin extends Controller_Template {
      */
     public $user_actions = array();
 
+    /**
+     * @var Media
+     */
     protected $media;
 
     protected $title = 'Configuration Management System';
@@ -189,7 +192,7 @@ class Controller_Admin extends Controller_Template {
             if($login_user->username == ADMINISTRATOR){
 				return $this->is_administrator = TRUE;
             }
-            
+
             $this->user_actions = $this->get_permissions($this->login_user);
 
             $controller = strtolower($request->controller());
@@ -197,7 +200,7 @@ class Controller_Admin extends Controller_Template {
             // auth(登录) 和 home(首页) 不用权限判断
             if(!in_array($controller, array_merge($this->user_actions, array('auth', 'home')))) {
 
-                $message = 'Access denied';
+                $message = __('Access denied');
 
                 if($request->is_ajax()){
 
@@ -206,10 +209,9 @@ class Controller_Admin extends Controller_Template {
                     $body = json_encode($json);
 
                 } else {
-
                     $body = $message;
                 }
-                echo $request->response()->body($body);
+                echo $this->response->body($body);
                 die();
             }
         }

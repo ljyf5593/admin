@@ -27,13 +27,14 @@ return array
     'uneditable' => '不可编辑',
     'Discription' => '描述',
 	'Check' => '检测',
-    
+
     'Are you sure to delete this object' => '你确定要删除吗',
     'Are you sure to execute the operation' => '你确定执行此操作吗',
     'Operation was successful' => '操作成功',
+    'Access denied' => '访问被拒绝',
     'Fuzzy query' => '支持模糊查询',
     'Back to index' => '返回首页',
-    
+
     'Configuration Management System' => '后台配置管理系统',
     'Login'  => '登录',
     'Sign Out' => '退出',
