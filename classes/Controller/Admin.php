@@ -190,7 +190,7 @@ class Controller_Admin extends Controller_Template {
 				return $this->is_administrator = TRUE;
             }
             
-            $this->user_actions = $this->login_user->get_permissions();
+            $this->user_actions = $this->get_permissions($this->login_user);
 
             $controller = strtolower($request->controller());
 
@@ -252,6 +252,23 @@ class Controller_Admin extends Controller_Template {
             $url = Route::url('admin/auth', array('action' => 'login'), TRUE);
             $this->location($url);
         }
+    }
+
+    private function get_permissions(Model_User $user) {
+        $role_permissions = array();
+        //首先获取他的所有角色
+        $roles = $user->roles->find_all();
+        foreach($roles as $role){
+
+            $role_perms = json_decode($role->permissions, true);
+            if(is_array($role_perms) AND !empty($role_perms)){
+                foreach($role_perms as $perm){
+                    $role_permissions[$perm] = $perm;
+                }
+            }
+        }
+
+        return $role_permissions;
     }
 
     /**

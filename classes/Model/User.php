@@ -123,37 +123,6 @@ class Model_User extends Model_Auth_User{
         }
     }
 
-    /**
-     * 获取当前用户的权限
-     * 如果是超级管理员，则直接返回
-     */
-    public function get_permissions(){
-        $Administrator = FALSE;
-        $user_permissions = $role_permissions = array();
-        //首先获取他的所有角色
-        $roles = $this->roles->find_all();
-        foreach($roles as $role){
-            if($role->name == 'Administrator'){
-                $Administrator = TRUE;
-            }
-            $role_perms = unserialize($role->permissions);
-            if(is_array($role_perms) AND !empty($role_perms)){
-                foreach($role_perms as $perm){
-                    $role_permissions[$perm] = $perm;
-                }
-            }
-        }
-
-        //超级管理员有权限、工具的权限
-        if($Administrator){
-            $user_permissions['permission'] = 'permission';
-        }
-
-        $user_permissions = array_merge($user_permissions, $role_permissions);
-
-        return $user_permissions;
-    }
-
     public function teach_type_show(){
         return Form::select('teach_type', array(
             self::TEACH_FULL => '专职',
