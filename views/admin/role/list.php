@@ -39,6 +39,7 @@
 
 				<td>
 				<?php
+                echo HTML::anchor(Route::url('admin', array('controller'=>$controller, 'action' => 'users', 'id'=>$model->pk()), TRUE), '<i class="icon-edit"></i>'.__('User'), array('class' => 'btn btn-mini btn-success ajax'))."\n";
 					echo HTML::anchor(Route::url('admin', array('controller'=>$controller, 'action' => 'edit', 'id'=>$model->pk()), TRUE), '<i class="icon-edit"></i>'.__('Edit'), array('class' => 'btn btn-mini btn-info ajax-modal'))."\n";
 					if($model->name != ADMINISTRATOR){
 						echo HTML::anchor(Route::url('admin', array('controller'=>$controller, 'action' => 'perm', 'id'=>$model->pk()), TRUE), '<i class="icon-check"></i>'.__('Permission'), array('class' => 'btn btn-mini btn-warning ajax'))."\n";

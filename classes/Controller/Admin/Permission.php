@@ -10,6 +10,49 @@ class Controller_Admin_Permission extends Controller_Admin_Crud {
     public $_model = 'role';
 
     /**
+     * 获取当前角色下的用户列表
+     */
+    public function action_users() {
+        $id = intval($this->request->param('id'));
+        if ($id > 0) {
+            $this->main = View::factory('/admin/role/users');
+
+            $model = ORM::factory('Role', $id);
+            $user_model = $model->users;
+            $pagination = new Pagination(array(
+                'total_items' => $user_model->reset(FALSE)->count_all(),
+                'view' => 'pagination/admin',
+            ));
+            $list_row = array(
+                'id' => array(
+                    'comment' => 'ID',
+                ),
+                'username' => array(
+                    'comment' => '用户名',
+                ),
+                'realname' => array(
+                    'comment' => '真实名称',
+                ),
+            );
+
+            // 获取排序相关参数
+            list($order, $by) = $this->get_order_param('dateline');
+            if($order AND isset($list_row[$order])){
+                $model->order_by($order, $by);
+            }
+            $this->main->set(array(
+                'model_list' => $user_model->limit($pagination->items_per_page)->offset($pagination->offset)->find_all(),
+                'list_row' => $list_row,
+                'pagination' => $pagination,
+                'order' => $order,
+                'by' => $by,
+            ));
+        } else {
+            $this->set_status('error', 'Parameter is not legitimate');
+        }
+    }
+
+    /**
      * 用户权限编辑
      */
     public function action_perm(){
@@ -49,7 +92,7 @@ class Controller_Admin_Permission extends Controller_Admin_Crud {
     }
 
 	public function after(){
-		$this->main->sys_roles = array('login', ADMINISTRATOR);
+		$this->main->sys_roles = array('login');
 		parent::after();
 	}
 
