@@ -6,7 +6,7 @@
  * @Id $Id: orm.php 256 2013-04-04 09:55:49Z liujie $
  */
 class ORM extends Kohana_ORM {
-    
+
     const STATUS_AUDITE = 1; // 已审核
     const STATUS_UNAUDITE = 0; // 未审核
 
@@ -26,6 +26,7 @@ class ORM extends Kohana_ORM {
     protected $_operation = array();
     // 批量操作
     protected $_batch_operation = array();
+
     // 日期显示列
     public $date_row = array();
     // 时间显示列

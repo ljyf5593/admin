@@ -39,9 +39,13 @@
                     <td>
                     <?php
                         if(in_array($key, $model->date_row)){
-                            echo date('Y-m-d', $model->$key);
+                            if ($model->$key) {
+                                echo date('Y-m-d', $model->$key);
+                            }
                         } elseif(in_array($key, $model->time_row)){
-                            echo date(Date::$timestamp_format, $model->$key);
+                            if ($model->$key) {
+                                echo date(Date::$timestamp_format, $model->$key);
+                            }
                         } else {
                             $func_name = 'get_'.$key;
                             if(method_exists($model, $func_name)){
@@ -60,7 +64,7 @@
 
                 </tbody>
             </table>
-            
+
             <!-- // 批量操作 -->
             <?php include Kohana::find_file('views', 'admin/common/batch')?>
 
