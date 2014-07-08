@@ -13,11 +13,11 @@ class Model_Resource extends ORM{
 
 	// 图片输出质量
 	private $_quality = 80;
-	
+
 	protected $_search_row = array(
 		'title',
 	);
-	
+
 	protected $_list_row = array(
 		'id',
 		'title',
@@ -26,7 +26,11 @@ class Model_Resource extends ORM{
 		'dateline',
 		'ordering',
 	);
-	
+
+	public function get_attachment() {
+		return $this->attachment.'&nbsp;<a target="_blank" href="'.URL::site('/upload/'.$this->attachment).'"><img height="100" class="preview" src="'.URL::site('/upload/'.$this->attachment).'"><i class="icon-picture icon-green icon-large"></i></a>';
+	}
+
 	/**
 	 * 文件上传
 	 * @param array $file
@@ -55,7 +59,7 @@ class Model_Resource extends ORM{
 
 		return $message;
 	}
-	
+
 	/**
 	 * 删除数据的同时删除文件
 	 * @see Kohana_ORM::delete()
@@ -120,7 +124,7 @@ class Model_Resource extends ORM{
 	private function getAllowType(){
 		return array('jpg', 'png', 'gif');
 	}
-	
+
 	/**
 	 * 获取文件后缀名
 	 * @param string $fileName
@@ -128,7 +132,7 @@ class Model_Resource extends ORM{
 	private function getExt($fileName){
 		return strtolower(end(explode('.', $fileName)));
 	}
-	
+
 	/**
 	 * 生成上传文件路径
 	 */
@@ -140,8 +144,8 @@ class Model_Resource extends ORM{
 		if (!is_dir($abs)){
 			mkdir($abs, 0777, TRUE);
 		}
-		
+
 		return $dir.DIRECTORY_SEPARATOR;
 	}
-	
+
 }

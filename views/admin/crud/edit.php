@@ -19,39 +19,6 @@ switch($key){
 </div>
 HTML;
         break;
-    case 'active':
-        $status = array(
-            1 => __('Enable'),
-            0 => __('Disable'),
-        );
-        $val = $model->$key;
-        $is_recommended = ($val == 1);
-        if($is_recommended){
-            $class = 'alert-info';
-            $icon = '<i class="icon-info-sign icon-red popover-help-top" title="'.__('Alert Text').'" data-content="'.__($model_name.' '.$key.' is Enable').'"></i>';
-        } else {
-            $class = 'alert';
-            $icon = '<i class="icon-info-sign icon-red popover-help-top" title="'.__('Alert Text').'" data-content="'.__($model_name.' '.$key.' is Disable').'"></i>';
-        }
-        echo <<<HTML
-<div id="{$key}-control-group" class="control-group span6 {$class} {$label_class}">
-    <label for="{$key}" class="control-label">
-        <span class="add-on">
-            {$value['comment']}{$icon}
-        </span>
-    </label>
-    <div class="controls">
-        <label class="radio inline">
-            <input type="radio" name="{$key}" value="1" checked="">{$status[1]}
-        </label>
-        <label class="radio inline">
-            <input type="radio" name="{$key}" value="0">{$status[0]}
-        </label>
-        {$message_label}
-    </div>
-</div>
-HTML;
-        break;
     default:
     ?>
 <div id="<?php echo $key;?>-control-group" class="control-group span6 <?php echo $label_class?>">
