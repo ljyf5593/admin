@@ -35,13 +35,6 @@ class ORM extends Kohana_ORM {
     public $editer_row = '';
 
     /**
-     * 获取时间列的相关信息
-     */
-    public function getDateRow(){
-        return array_intersect_key($this->_table_columns, array_fill_keys($this->_search_row, null));
-    }
-
-    /**
      * 获取搜索列的相关信息
      */
     public function getSearchRow(){

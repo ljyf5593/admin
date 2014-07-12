@@ -72,7 +72,6 @@ abstract class Controller_Admin_Crud extends Controller_Admin {
         $id = intval($this->request->param('id'));
         $model = ORM::factory($this->_model, $id);
         $this->main = $this->load_view('edit', $model);
-        $this->main->date_row = $model->getDateRow();
         if($model->loaded()){
             return $model;
         } else {
@@ -200,7 +199,7 @@ abstract class Controller_Admin_Crud extends Controller_Admin {
 
 		return $view;
     }
-    
+
     /**
      * 处理搜索信息,有缓存效果
      * @param ORM $model
