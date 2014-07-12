@@ -23,9 +23,6 @@ class Controller_Admin_User extends Controller_Admin_Crud {
 		$id = intval($this->request->param('id'));
 		$model = ORM::factory('User', $id);
 		$post_data = $this->request->post();
-		$post_data['dateline'] = isset($post_data['dateline'])?strtotime($post_data['last_login']):time();
-		$post_data['last_login'] = strtotime($post_data['last_login']);
-
 		try{
 			if($model->loaded()){
 				if(empty($post_data['password'])){

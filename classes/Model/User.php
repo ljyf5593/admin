@@ -5,7 +5,7 @@
  * @author Jie.Liu (ljyf5593@gmail.com)
  * @Id $Id: user.php 238 2013-03-20 09:06:49Z Jie.Liu $
  */
-class Model_User extends Model_Auth_User{
+class Model_User extends Model_Auth_User {
 
     const GENDER_MALE = 1; // 男
     const GENDER_FEMALE = 2; // 女
@@ -24,10 +24,6 @@ class Model_User extends Model_Auth_User{
         'roles'       => array('model' => 'Role', 'through' => 'roles_users'),
     );
 
-    protected $_has_one = array(
-        'wechat' => array(),
-    );
-
     protected $_created_column = array(
         'column' => 'dateline',
         'format' => TRUE,
@@ -37,7 +33,7 @@ class Model_User extends Model_Auth_User{
 
     protected $_list_row = array( 'id', 'active', 'username', 'email', 'dateline', 'logins', 'last_login' );
 
-    public $time_row = array( 'dateline', 'last_login');
+    protected $_list_row = array( 'id',	'active', 'username', 'email', 'dateline', 'logins',	'last_login' );
 
     /**
      * 批量操作动作
@@ -56,12 +52,31 @@ class Model_User extends Model_Auth_User{
         ),
     );
 
-    /**
-     * 获取最新的token
-     */
-    public function get_token(){
-        return $this->user_tokens->order_by('expires', 'DESC')->find()->token;
+    // 日期显示列
+    public $date_row = array('birthday');
+    // 时间显示列
+    public $time_row = array('dateline', 'last_login');
+
+    public function filters() {
+        return array(
+            'dateline' => array(
+                array('strtotime'),
+            ),
+            'birthday' => array(
+                array('strtotime'),
+            ),
+            'last_login' => array(
+                array('strtotime'),
+            ),
+        ) + parent::filters();
     }
+
+	/**
+	 * 获取最新的token
+	 */
+	public function get_token(){
+		return $this->user_tokens->order_by('expires', 'DESC')->find()->token;
+	}
 
     /**
      * 用户性别
