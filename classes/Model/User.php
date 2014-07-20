@@ -65,9 +65,6 @@ class Model_User extends Model_Auth_User {
             'birthday' => array(
                 array('strtotime'),
             ),
-            'last_login' => array(
-                array('strtotime'),
-            ),
         ) + parent::filters();
     }
 
