@@ -216,7 +216,10 @@ abstract class Controller_Admin_Crud extends Controller_Admin {
             if(isset($search[$key]) AND $search[$key] != ''){
                 if(ORM::isFuzzyQuery($value)){
                     $where[] = array($key, 'LIKE', '%'.$search[$key].'%');
-                }else {
+                } else {
+                    if (in_array($key, $model->date_row) OR in_array($key, $model->time_row)) {
+                        $search[$key] = strtotime($search[$key]);
+                    }
                     $where[] = array($key, '=', $search[$key]);
                 }
             }

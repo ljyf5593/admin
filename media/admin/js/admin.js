@@ -364,5 +364,11 @@ jQuery.fn.extend({
     $main.find("span.date").on('click', function(){
         WdatePicker({dateFmt:'yyyy-MM-dd', el: $(this).attr('target')});
     });
+    $main.find("input.datetime").on('click', function(){
+        WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});
+    });
+    $main.find("input.date").on('click', function(){
+        WdatePicker({dateFmt:'yyyy-MM-dd'});
+    });
   }
 })

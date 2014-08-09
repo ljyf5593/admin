@@ -7,6 +7,9 @@
 <form class="well form-inline ajaxform" action="<?php echo Route::url('admin/list', array('controller'=>Request::$current->controller(), 'action'=>'list'));?>" method="get">
     <?php
         $model = $search['model'];
+        // 获取时间和日期类字段
+        $date_row = $model->date_row;
+        $time_row = $model->time_row;
         if( ! empty($search_row)){
             foreach($search_row as $key => $value){
                 $func = $key.'_search';
@@ -15,10 +18,23 @@
                 if(method_exists($model, $func)){
                     echo '<label class="search-label">'.$comment.'</label>'.$model->$func();
 
-                }elseif($value['type'] === 'int'){
-                    echo '<label class="search-label">'.$comment.'</label>'.Form::input($key, NULL, array('class' => 'input-mini', 'placeholder' => $value['comment']));
-                }else{ // 判断是否可以模糊查询，是则显示一个特殊标识
-                    echo '<label class="search-label">'.$comment.( ORM::isFuzzyQuery($value) ? ' <i class="icon-asterisk popover-help-top" title="'.__('Help Text').'" data-content="'.__('Fuzzy query').'"></i>':'').'</label>'.Form::input($key, NULL, array('class' => 'input-medium', 'placeholder' => $value['comment']));
+                } else { // 判断是否可以模糊查询，是则显示一个特殊标识
+                    $extend_icon = '';
+                    $input_class = 'input-mini';
+                    if (ORM::isFuzzyQuery($value)) {
+                        $extend_icon .= ' <i class="icon-asterisk popover-help-top" title="'.__('Help Text').'" data-content="'.__('Fuzzy query').'"></i>';
+                        $input_class = 'input-medium';
+                    }
+
+                    if (in_array($key, $date_row)) {
+                        $input_class = 'input-medium date';
+                    }
+
+                    if (in_array($key, $time_row)) {
+                        $input_class = 'input-medium datetime';
+                    }                    
+
+                    echo '<label class="search-label">'.$comment.$extend_icon.'</label>'.Form::input($key, NULL, array('class' => $input_class, 'placeholder' => $value['comment']));
                 }
             }
         }

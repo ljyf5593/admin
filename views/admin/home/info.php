@@ -31,7 +31,7 @@
                     <li><a target="_blank" href="http://jquery.com/">jQuery</a> Version : 1.10.2</li>
                     <li><a target="_blank" href="https://github.com/malsup/form">jQuery Form Plugin</a> Version : 3.36</li>
                     <li><a target="_blank" href="http://bootboxjs.com/">Bootboxjs</a> Version : 3.3.0</li>
-                    <li><a target="_blank" href="http://www.my97.net/"> My97 DatePicker</a> Version : 4.8 Beta3</li>
+                    <li><a target="_blank" href="http://www.my97.net/"> My97 DatePicker</a> Version : 4.8 Beta4</li>
                     <li><a target="_blank" href="http://www.kindsoft.net/"> KindEditor</a> Version : 4.1.7</li>
                     <li><a target="_blank" href="https://github.com/ajaxray/Kohana-Log-Viewer"> Kohana Log Viewer</a></li>
                 </ul>
