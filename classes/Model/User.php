@@ -33,8 +33,6 @@ class Model_User extends Model_Auth_User {
 
     protected $_list_row = array( 'id', 'active', 'username', 'email', 'dateline', 'logins', 'last_login' );
 
-    protected $_list_row = array( 'id',	'active', 'username', 'email', 'dateline', 'logins',	'last_login' );
-
     /**
      * 批量操作动作
      * @var array
