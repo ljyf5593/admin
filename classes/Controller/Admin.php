@@ -150,11 +150,11 @@ class Controller_Admin extends Controller_Template {
     }
 
     protected function css($css){
-        $this->media->css('admin/'.$css);
+        $this->media->css('media/admin/'.$css);
     }
 
     protected function js($js){
-        $this->media->js('admin/'.$js);
+        $this->media->js('media/admin/'.$js);
     }
 
     /**
