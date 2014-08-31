@@ -32,8 +32,5 @@ return array(
 		'faq' => array(
 			'icon' => 'icon-twitter',
 		),
-		'article' => array(
-			'icon' => 'icon-leaf',
-		),
 	),
 );
