@@ -134,12 +134,6 @@
 <!--[if lt IE 9]>
 <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
-<!-- JS
-================================================== -->
-<script type="text/javascript">
-	var UPLOAD_URL = "<?php echo URL::site('/editor/upload');?>";
-	var FILE_MANAGE_URL = "<?php echo URL::site('/editor/manage');?>";
-</script>
 <?php echo $media->render_js();?>
 </body>
 </html>

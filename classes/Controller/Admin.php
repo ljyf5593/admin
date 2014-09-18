@@ -87,7 +87,7 @@ class Controller_Admin extends Controller_Template {
         $this->content = View::factory($this->content)->set('action', $this->request->action());
 
         if(!$this->request->is_ajax()){
-            $this->media = Media::get_instance('admin');
+            $this->media = Media::get_instance();
             $this->css('css/bootstrap.min.css');
             $this->css('css/font-awesome.min.css');
             $this->css('css/bootstrap-responsive.min.css');
@@ -149,11 +149,11 @@ class Controller_Admin extends Controller_Template {
     }
 
     protected function css($css){
-        $this->media->css('media/admin/'.$css);
+        $this->media->css('admin/'.$css);
     }
 
     protected function js($js){
-        $this->media->js('media/admin/'.$js);
+        $this->media->js('admin/'.$js);
     }
 
     /**
