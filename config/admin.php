@@ -26,14 +26,8 @@ return array(
 	),
 
 	'side_nav' => array(
-		'resource' => array(
-			'icon' => 'icon-paper-clip',
-		),
 		'faq' => array(
 			'icon' => 'icon-twitter',
-		),
-		'article' => array(
-			'icon' => 'icon-leaf',
 		),
 	),
 );

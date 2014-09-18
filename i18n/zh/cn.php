@@ -105,8 +105,6 @@ return array
     ':field must be a email address' => ':field必须是一个email地址',
     ':field already exists' => ':field已存在',
 
-    'Resource' => '附件',
-
     'Tool' => '工具',
     'Data' => '数据',
     'Name' => '名称',

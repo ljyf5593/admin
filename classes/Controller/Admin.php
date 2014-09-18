@@ -98,8 +98,7 @@ class Controller_Admin extends Controller_Template {
             $this->js('js/bootstrap.min.js');
             $this->js('js/bootbox.min.js');
             $this->js('DatePicker/WdatePicker.js');
-            $this->js('kindEditor/kindeditor.js');
-            $this->js('kindEditor/lang/zh_CN.js');
+            $this->media->editor_js();
             $this->js('js/admin.js');
         }
 
@@ -150,11 +149,11 @@ class Controller_Admin extends Controller_Template {
     }
 
     protected function css($css){
-        $this->media->css('admin/'.$css);
+        $this->media->css('media/admin/'.$css);
     }
 
     protected function js($js){
-        $this->media->js('admin/'.$js);
+        $this->media->js('media/admin/'.$js);
     }
 
     /**
