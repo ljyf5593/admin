@@ -87,6 +87,7 @@ jQuery(function($){
           var editor = KindEditor.create('#content-edit',{
               uploadJson : UPLOAD_URL,
               fileManagerJson : FILE_MANAGE_URL,
+              filterMode : false,
               allowFileManager : true
           });
         } 
