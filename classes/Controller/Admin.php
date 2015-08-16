@@ -95,6 +95,7 @@ class Controller_Admin extends Controller_Template {
 
             $this->js('js/jquery.min.js');
             $this->js('js/jquery.form.js');
+            $this->js('js/jquery.pjax.js');
             $this->js('js/bootstrap.min.js');
             $this->js('js/bootbox.min.js');
             $this->js('DatePicker/WdatePicker.js');
@@ -113,6 +114,13 @@ class Controller_Admin extends Controller_Template {
         $this->content->top_actions = $this->top_actions;
         $this->content->status = $this->status;
         $this->content->status_info = $this->status_info;
+
+        // pjax
+        if ($this->request->headers('X-PJAX')) {
+            echo $this->response->send_headers()->body($this->content);
+            exit;
+        }
+
         if($this->request->is_ajax() AND $this->auto_render){
 
             $this->auto_render = FALSE;

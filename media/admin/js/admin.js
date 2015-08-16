@@ -140,27 +140,6 @@ jQuery(function($){
     var view_content = $("#content").on("loaded", function(e){
         var $main = $(this);
 
-        //导航栏处的动作提交
-        $main.find("div.top-bar a, div.pagination ul li a").on("click", function(e){
-          e.preventDefault();
-          var $this = $(this);
-
-          // 排除下拉
-          if($this.hasClass('dropdown-toggle')){
-              return;
-          }
-
-          // 排除链接为空
-          var url = $this.attr("href");
-          if(url.length <= 0){
-              return;
-          }
-
-          $.get($this.attr("href"), { _t: new Date().getTime() }, function(json){
-              $main.loadData(json, false);
-          }, "json");
-        });
-
         // 表单ajax绑定
         $main.find("form.ajaxform").ajaxForm({
             dataType: "json",
@@ -256,8 +235,8 @@ jQuery(function($){
 
     }).trigger("loaded");
 
-    // Nav Pagination ajax
-    $("ul.nav, div.pagination ul").delegate("li", 'click', function(e){
+    // Nav Pagination pjax
+    $(document).on('click', "ul.nav li, div.top-bar ul li, div.pagination ul li", function(e){
       e.preventDefault();
       $this = $(this);
         
@@ -275,10 +254,12 @@ jQuery(function($){
           return ;
       }
 
-      $.get(url, { _t: new Date().getTime() }, function(json){
-          view_content.loadData(json);
-      }, "json");
-
+      $.pjax({
+        url : url,
+        container: '#content'
+      });
+    }).on('pjax:end', function(){
+      view_content.trigger('loaded');
     });
 
     //loading btn

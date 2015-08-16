@@ -3,14 +3,14 @@
     <ul class="breadcrumb">
         <li><a href="<?php echo Route::url('admin')?>"><i class="icon-home"></i><?php echo __('Home')?></a></li>
         <?php
-            $controller = Request::$current->controller();
+            $controller = strtolower(Request::$current->controller());
             if($controller != 'home'):
         ?>
         <li><i class="icon-chevron-right icon-blue"></i></li>
         <li><a href="<?php echo Route::url('admin', array('controller' => $controller))?>"><?php echo __(ucfirst($controller));?></a></li>
         <?php endif;?>
         <?php
-            $action = Request::$current->action();
+            $action = strtolower(Request::$current->action());
             if($action != 'index'){
                 echo '<li><i class="icon-chevron-right icon-blue"></i></li><li><span>'.__(ucfirst($action)).'</span></li>';
             }
