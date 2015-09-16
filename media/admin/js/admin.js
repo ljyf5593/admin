@@ -256,7 +256,8 @@ jQuery(function($){
 
       $.pjax({
         url : url,
-        container: '#content'
+        container: '#content',
+        timeout: 5000
       });
     }).on('pjax:end', function(){
       view_content.trigger('loaded');
