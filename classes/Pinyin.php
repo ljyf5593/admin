@@ -26,24 +26,58 @@ class Pinyin {
 	}
 
 	/**
+	 * 字符串转拼音，保留多音词版本
+	 * @param string 汉字字符串
+	 * @param string 拼音之间的分隔符
+	 * @param string 多音字数字之间的分割
+	 * @return string 
+	 */
+	public function str2multitone($str, $split = '', $splits = '|') {
+		$result = $this->strconvert($str);
+		$pinyinlist = array();
+	        foreach($result as $multitone){
+	            $temp = array();
+	            foreach($multitone as $item){
+	                if($pinyinlist){
+	                    foreach($pinyinlist as $origin){
+	                        $temp[] = $origin.$split.$item;
+	                    }
+	                }else{
+	                    $temp[] = $item;
+	                }
+	            }
+	            $pinyinlist = $temp;
+	        }
+		
+		return implode($splits, $pinyinlist);
+	}
+
+	/**
 	 * 字符串转拼音
 	 * @param $str
 	 * @return string
 	 */
-	public function str2pinyin($str){
-		$result = '';
-
-		foreach(UTF8::str_split($str) as $char){
-			$pinyin = $this->get_pinyin($char);
-
-			if(UTF8::strpos($pinyin, ',') !== FALSE ){ // 去除多音字
-				$pys = explode(',', $pinyin);
-				$pinyin = $pys[0];
-			}
-
-			$result .= $pinyin;
+	public function str2pinyin($str, $split = ''){
+		$result = $this->strconvert($str);
+		$pinyin = array();
+		foreach ($result as $item) {
+			$pinyin[] = $item[0];
 		}
 
+		return implode($split, $pinyin);
+	}
+
+	/**
+	 * 字符串转拼音数组
+	 * @param string
+	 * @return array
+	 */
+	public function strconvert($str) {
+		$result = array();
+		foreach($this->utf8_str_split($str) as $char){
+			$pinyin = $this->get_pinyin($char);
+			$result[] = explode(',', $pinyin);
+		}
 		return $result;
 	}
 
